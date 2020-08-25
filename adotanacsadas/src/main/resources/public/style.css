@@ -3,7 +3,7 @@
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
     width: auto;
-    font-size: 22px;
+    font-size: 20px;
   }
   .fontTimesBold{
     font-family: "Times New Roman", Times, serif;
@@ -39,4 +39,9 @@
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
+  }
+
+  .font-comic{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 30px;
   }

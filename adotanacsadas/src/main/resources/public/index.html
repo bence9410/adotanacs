@@ -25,19 +25,19 @@
   <div id="header">
     <nav class="navbar fixed-top navbar-dark bg-dark">
       <div class="row">
-        <div class="col-2">
+        <div class="">
           <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
         </div>
       </div>
-      <div class="col-7 mt-3 " style="margin-right:-20px;">
+      <div class=" ml-3" style="margin-right:-20px;">
         <h4 class="text-white font-bold">Németh Erzsébet</h4>
         <h6 class="text-white font text-center">Adótanácsadó</h6>
       </div>
-      <div class="col-3 col-lg-1">
-        <img src="profilePicture.jpg" class="img-fluid rounded-circle" alt="profile image">
+      <div class="col-4">
+        <img src="img/perfectMember.png" class="img-fluid  ml-3" style="width: 200px;" alt="profile image">
       </div>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
@@ -72,17 +72,22 @@
         <h4 class="text-white font-bold">Németh Erzsébet</h4>
       </div>
       <div class="col-3 col-lg-1">
-        <img src="profilePicture.jpg" class="img-fluid rounded-circle shadow" alt="profile image">
+        <img src="img/perfectMember.png" class="img-fluid rounded-circle shadow" alt="perfectMember">
       </div>
     </nav>
   </div>
   <main id="content" class="container">
     <div id="mainPage">
-      <div class="text-center col-lg-6 offset-sm-3 offset-lg-3 mt-5 mb-3">
-        <img src="accountant.jpg" class=" col-7  rounded-circle " alt="Responsive image">
+      <div class="bookingContainer mt-4 shadow">
+        <img class="rounded img-fluid opacity: 0.4;" src="img/accountantt.jpg" alt="accountant">
+        <div class="content " style="padding: 0px; ">
+
+          <h1 class="font-bold mt-1 pt-2 ml-3 ">Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési
+            teendő<h1>
+        </div>
       </div>
-      <p class="font-bold mt-2 ">Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési teendő</p>
-      <p class="font text-justify">Többéves adószakértői, adótanácsadói, mérlegképes könyvelői tapasztalattal segítem
+      <p class="font text-justify mt-4">Többéves adószakértői, adótanácsadói, mérlegképes könyvelői tapasztalattal
+        segítem
         leendő és jelenlegi
         ügyfeleimet. Megbízhatóság, szerződött garancia titoktartással vállalkozása biztonsága érdekében.
       </p>
@@ -91,7 +96,7 @@
         megoldást találni az adózás útvesztőjében.
       </p>
       <div class="text-center col-lg-6 offset-sm-3 offset-lg-3 mt-3 mb-3">
-        <img class="col-7 rounded-circle " src="studies.jpg" alt="tanulanyok image">
+        <img class="col-7 rounded-circle " src="img/studies.jpg" alt="tanulanyok image">
       </div>
       <p class="font-bold text-center">Tanulmányok</p>
       <table class="table table-striped font">
@@ -181,11 +186,10 @@
     </div>
     <div id="booking" style="display: none;">
       <div class="bookingContainer mt-4 shadow">
-        <img class="rounded img-fluid " src="booking.jpg" alt="calendar">
+        <img class="rounded img-fluid " src="img/booking.jpg" alt="calendar">
         <div class="content">
           <h4>Foglaljon időpontot most.</h4>
-          <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque
-            expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.</p>
+          <h6> A tanácsadói díjról a válasz e-mailben tájékoztatom.</h6>
         </div>
       </div>
       <div id="avaiableTimes">
@@ -199,6 +203,7 @@
               <h5 class="modal-title" id="bookingModalLongTitle">
                 <div id="actualDateTime"></div>
                 Kérem töltse ki a foglaláshoz az adatait.
+
               </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -250,20 +255,32 @@
         megszületéséhez. </h6>
     </div>
     <footer class="page-footer font-small special-color-dark border border-dark pt-2">
-      <div class="bg-white ">
-        <div class="container ">
-          <div class="row py-4 d-flex align-items-center">
-            <div class="col-12 text-center ">
-              <img src="perfectMember.png" class="img-fluid rounded-circle" alt="Responsive image">
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-          </div>
-          <!-- Grid row-->
+      <div class=" bg-light pt-3 pb-4">
+        <div class="col-7 offset-3 mt-2 ">
+          <img src="img/perfectMember.png" class="img-fluid " alt="perfectMember">
         </div>
       </div>
+      <div class="container  offset-3  ">
+        <div class=" py-4 d-flex  ">
+
+          <div class="col-6 offet-5 text-center offet-5 ">
+            <img src="img/profilePicture.jpg" class="img-fluid rounded-circle shadow" alt="profile picture">
+          </div>
+
+
+
+          <!-- Grid column -->
+          <!-- Grid column -->
+        </div>
+
+
+      </div>
+      <div class="row">
+        <p class="font-comic offset-3 mb-1">Németh Erzsébet</p>
+        <!-- Grid row-->
+      </div>
       <!-- Footer Links -->
-      <div class="container text-center text-md-left mt-2 ">
+      <div class="container text-center text-md-left mt-1 ">
         <!-- Grid row -->
         <div class="row mt-3 ">
           <!-- Grid column -->
