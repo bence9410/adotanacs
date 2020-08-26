@@ -26,18 +26,27 @@ function itemsShow() {
     $("#items").show();
     $("#mainPage").hide();
     $("#booking").hide();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
 }
 
 function mainPageShow() {
     $("#mainPage").show();
     $("#items").hide();
     $("#booking").hide();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
 }
 
 function bookingShow() {
     $("#booking").show();
     $("#items").hide();
     $("#mainPage").hide();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
 }
 
 function addArticle() {
@@ -117,7 +126,7 @@ function generateTime(time, monthAndDay) {
     let id = time.replace(':', '') + monthAndDay.replace(',', '');
     return `<div class="card" id="` + id + `Card">
     <div class="card-body row">
-      <div class="col-4 offset-1 pt-2">`+ time + `-tól</div>
+      <div class="col-6  pt-2">`+ time + `-tól</div>
     <select id="`+ id + `" class="custom-select col-5" >
       <option value="0">30 perc</option>
       <option value="1">60 perc</option>
@@ -127,6 +136,10 @@ function generateTime(time, monthAndDay) {
   </div>
   </div>
   </div>`
+
+}
+
+function meetingType() {
 
 }
 
