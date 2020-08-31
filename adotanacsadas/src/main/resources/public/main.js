@@ -21,6 +21,8 @@ for (let i = 0; i < weeks.length; i++) {
     availableTimesRoot.append(generateDay(weeks[i]));
 
 }
+var dateTime = "";
+
 
 function itemsShow() {
     $("#items").show();
@@ -67,30 +69,39 @@ function convertToHtmlCard(title, article) {
 }
 function showBookingModal(time, monthAndDay) {
     $("#bookingModal").modal("show");
+    $("#actualDateTime").val();
     var parts = monthAndDay.split(',');
     var month = parts[0];
     var day = parts[1];
     var hour = $("#" + time.replace(':', '') + monthAndDay.replace(',', '')).val();
     $("#actualDateTime").html(month + "." + day + ". Péntek " + time + (hour == "0" ? " 30 perc" : " 60 perc"));
-    $("#toBooking").attr("onclick", "toBooking(" + month + "," + day + "," + time.replace(':', ',') + "," + hour + ")");
+    $("#toBooking").attr("onclick", "toBooking(" + month + "," + day + ", '" + time.replace(':', "','") + "'," + hour + ")");
 
 }
 function toBooking(month, day, timehour, timeMin, hour) {
     var name = $("#bookingInputName").val();
-    var email = $("#bookingInputEmail1").val();
+    var email = $("#bookingInputEmail").val();
+    var meetingType = $("#meetingType").val();
     var description = $("#bookingInputText").val();
-    var booking = { month, day, time: timehour + ":" + timeMin, hour, name, email, description };
+    var booking = { month, day, time: timehour + ":" + timeMin, hour, name, email, meetingType, description };
     $("#bookingModal").modal("hide");
+    $("#finalBooking").html(JSON.stringify(booking));
     $("#bookingSucces").modal("show");
     $("#bookingInputName").val("");
-    $("#bookingInputEmail1").val("");
+    $("#bookingInputEmail").val("");
     $("#bookingInputText").val("");
+    console.log("#" + timehour + timeMin + month + day + "Card")
     var card = $("#" + timehour + timeMin + month + day + "Card");
+
     if (card.siblings().length) {
+        console.log("elso" + card.siblings().length);
         card.remove();
 
     } else {
-        card.parent().remove();
+
+        card.parent().parent().remove();
+        console.log("második" + card.siblings().length);
+
 
     }
 
@@ -140,6 +151,10 @@ function generateTime(time, monthAndDay) {
 }
 
 function meetingType() {
+
+}
+
+function finalBookingDates() {
 
 }
 

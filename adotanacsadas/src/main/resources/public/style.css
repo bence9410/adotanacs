@@ -1,4 +1,6 @@
-
+body {
+  overflow-x:hidden;
+}
 .font-bold{
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
