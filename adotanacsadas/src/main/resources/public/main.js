@@ -90,7 +90,6 @@ function toBooking(month, day, timehour, timeMin, hour) {
     $("#bookingInputName").val("");
     $("#bookingInputEmail").val("");
     $("#bookingInputText").val("");
-    console.log("#" + timehour + timeMin + month + day + "Card")
     var card = $("#" + timehour + timeMin + month + day + "Card");
 
     if (card.siblings().length) {
@@ -122,7 +121,7 @@ function nextFarFriday() {
 function generateDay(date) {
     var availableBookings = ["14:30", "16:00", "17:30"];
     var fri = `<div class="card mt-5 mb-3">
-              <div id="bookingDateFriday" class="card-header text-center">`+ ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "." + date.getDate() + `. Péntek</div>
+              <div class="card-header text-center">`+ ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "." + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + `. Péntek</div>
               <div class="card-body">`;
 
     for (let i = 0; i < availableBookings.length; i++) {
