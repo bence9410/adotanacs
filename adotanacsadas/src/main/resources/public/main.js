@@ -74,7 +74,7 @@ function showBookingModal(time, monthAndDay) {
     var month = parts[0];
     var day = parts[1];
     var hour = $("#" + time.replace(':', '') + monthAndDay.replace(',', '')).val();
-    $("#actualDateTime").html(month + "." + day + ". Péntek " + time + (hour == "0" ? " 30 perc" : " 60 perc"));
+    $("#actualDateTime").html((month < 10 ? "0" + month : month) + "." + day + ". Péntek " + time + (hour == "0" ? " 30 perc" : " 60 perc"));
     $("#toBooking").attr("onclick", "toBooking(" + month + "," + day + ", '" + time.replace(':', "','") + "'," + hour + ")");
 
 }
@@ -120,7 +120,7 @@ function nextFarFriday() {
 
 function generateDay(date) {
     var availableBookings = ["14:30", "16:00", "17:30"];
-    var fri = `<div class="card mt-5 mb-3">
+    var fri = `<div class="card mt-5 mb-3 day">
               <div class="card-header text-center">`+ ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "." + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + `. Péntek</div>
               <div class="card-body">`;
 
@@ -134,7 +134,7 @@ function generateDay(date) {
 
 function generateTime(time, monthAndDay) {
     let id = time.replace(':', '') + monthAndDay.replace(',', '');
-    return `<div class="card" id="` + id + `Card">
+    return `<div class="card time" id="` + id + `Card">
     <div class="card-body row">
       <div class="col-6  pt-2">`+ time + `-tól</div>
     <select id="`+ id + `" class="custom-select col-5" >

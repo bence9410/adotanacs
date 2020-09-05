@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class AdotanacsadasApplicationTests {
+public class AdotanacsadasApplicationTests {
 	private static final FirefoxOptions FO;
 
 	static {
@@ -57,14 +57,14 @@ class AdotanacsadasApplicationTests {
 		driverFacade.quit();
 	}
 
-	@Test
+	// @Test
 	public void articleTest() {
 		driverFacade.get("http://localhost:" + port);
 		driverFacade.click("#navbarButton");
 		driverFacade.click(".navbar-nav li:nth-child(3)");
 		driverFacade.text("#items h2", "Cikkek");
 		driverFacade.text("#articlesRoot > div:nth-child(1) .card-title ", "What is Lorem Ipsum?");
-		driverFacade.text("#articlesRoot > div:nth-child(1) .card-title ", "Where does it come from?");
+		driverFacade.text("#articlesRoot > div:nth-child(2) .card-title ", "Where does it come from?");
 		driverFacade.write("#title", "Proba szöveg");
 		driverFacade.write("#article", "The standard Lorem Ipsum passage, used since the 1500s");
 		driverFacade.click("#articleButton");
@@ -88,7 +88,7 @@ class AdotanacsadasApplicationTests {
 	}
 
 	@Test
-	public void bookingDate() {
+	public void bokingDate() {
 		driverFacade.get("http://localhost:" + port);
 		driverFacade.click("#navbarButton");
 		driverFacade.click(".navbar-nav li:nth-child(2)");
@@ -100,8 +100,20 @@ class AdotanacsadasApplicationTests {
 				+ (nextFarFriday.getDayOfMonth() < 10 ? "0" + nextFarFriday.getDayOfMonth()
 						: nextFarFriday.getDayOfMonth())
 				+ ". Péntek";
-		driverFacade.text("#avaiableTimes .card:nth-child(1) .card-header", bookingFreeDateTime);
-		log.info(bookingFreeDateTime);
+		driverFacade.text(".day:nth-child(1) .card-header", bookingFreeDateTime);
+		driverFacade.text(".day:nth-child(1) .card:nth-child(1) .card-body div:nth-child(1) ", "14:30-tól");
+		driverFacade.select(".day:nth-child(1) .card:nth-child(1) select", "1");
+		driverFacade.click(".day:nth-child(1) input ");
+		/// ".day:nth-child(1) .time:nth-child(2) select"
+		driverFacade.text("#actualDateTime", "9.11. Péntek 14:30 60 perc");
+		driverFacade.write("#bookingInputName", "Varga Virag");
+		driverFacade.write("#bookingInputEmail", "varga@gmail.com");
+		driverFacade.select("#meetingType", "skype");
+		driverFacade.write("#bookingInputText", "Jó napot!");
+		driverFacade.click("#toBooking");
+		driverFacade.click(".modal-body:nth-child(1) button ");
+		driverFacade.text(".day:nth-child(1) .card:nth-child(1) .card-body div:nth-child(1) ", "16:00-tól");
+		// driverFacade.text("#finalBooking", "");
 	}
 
 }
