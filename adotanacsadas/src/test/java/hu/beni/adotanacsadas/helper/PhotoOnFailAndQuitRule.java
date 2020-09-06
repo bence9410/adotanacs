@@ -19,7 +19,6 @@ public class PhotoOnFailAndQuitRule extends TestWatcher {
 
     @Override
     protected void failed(Throwable e, Description description) {
-        log.info("krunoki");
         try {
             File f = new File("/home/jenifer/" + description.getMethodName()
                     + LocalDateTime.now().toString().replace(':', '-') + ".png");

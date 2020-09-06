@@ -57,19 +57,15 @@ public class AdotanacsadasApplicationTests {
 		driverFacade.quit();
 	}
 
-	// @Test
+	@Test
 	public void articleTest() {
 		driverFacade.get("http://localhost:" + port);
 		driverFacade.click("#navbarButton");
 		driverFacade.click(".navbar-nav li:nth-child(3)");
 		driverFacade.text("#items h2", "Cikkek");
-		driverFacade.text("#articlesRoot > div:nth-child(1) .card-title ", "What is Lorem Ipsum?");
-		driverFacade.text("#articlesRoot > div:nth-child(2) .card-title ", "Where does it come from?");
-		driverFacade.write("#title", "Proba szöveg");
-		driverFacade.write("#article", "The standard Lorem Ipsum passage, used since the 1500s");
-		driverFacade.click("#articleButton");
-		driverFacade.text("#articlesRoot > div:nth-child(3) .card-title ", "Proba szöveg");
-
+		driverFacade.text("#articlesRoot > div:nth-child(1) .card-title ", "Alma");
+		driverFacade.text("#articlesRoot > div:nth-child(1) .card-text", "Itt egy almafa.");
+		driverFacade.notPresent("#articlesRoot > div:nth-child(2)");
 	}
 
 	private LocalDate calcNextFarFriday() {
