@@ -1,69 +1,19 @@
 var availableBookings = ["14:30", "16:00", "17:30"];
 var available = ["PM2_30", "PM4_00", "PM5_30"];
 
-var articles = [];
-$.ajax({
-    url: "/cikkek",
-    method: "GET",
-    success: function (data) {
-        articles = data;
-        let articlesRoot = $("#articlesRoot");
-        for (let i = 0; i < articles.length; i++) {
-            articlesRoot.append(convertToHtmlCard(articles[i].title, articles[i].content));
-
-        }
-
-    }
-})
-var weeks = [];
 $.ajax({
     url: "/free-times",
     method: "GET",
     success: function (data) {
         $.each(data, function (key, value) {
-            console.log(key + " " + value);
             var availableTimesRoot = $("#avaiableTimes");
             availableTimesRoot.append(generateDay(key, value));
 
 
         });
-
-
-
     }
 })
 
-function itemsShow() {
-    $("#items").show();
-    $("#mainPage").hide();
-    $("#booking").hide();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
-}
-
-function mainPageShow() {
-    $("#mainPage").show();
-    $("#items").hide();
-    $("#booking").hide();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
-}
-
-function bookingShow() {
-    $("#booking").show();
-    $("#items").hide();
-    $("#mainPage").hide();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
-}
-
-function convertToHtmlCard(title, article) {
-    return "<div class=\"col-12 offet-1 col-md-6 mb-3 mb-md-4\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + title + "</h5><p class=\"card-text\">" + article + "</p></div></div></div>";
-
-}
 function showBookingModal(time, monthAndDay) {
     $("#bookingModal").modal("show");
     $("#actualDateTime").val();
@@ -91,7 +41,6 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
         success: function () {
             $("#bookingSucces").modal("show");
             var card = $("#" + timehour + timeMin + month + day + "Card");
-            console.log("#" + timehour + timeMin + month + day + "Card")
 
             if (card.siblings().length) {
                 card.remove();
@@ -162,12 +111,3 @@ function generateTime(time, monthAndDay) {
   </div>`
 
 }
-
-function meetingType() {
-
-}
-
-function finalBookingDates() {
-
-}
-

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
   <meta charset="UTF-8">
@@ -35,28 +35,16 @@
       <div class="collapse navbar-collapse col-12" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#" onclick="mainPageShow()" data-toggle="collapse"
-              data-target="#navbarNavDropdown">Főoldal<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Főoldal<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#navbarNavDropdown"
-              onclick="bookingShow()">
+            <a class="nav-link" href="/idopontfoglalas">
               Időpontfoglalás</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="itemsShow()" data-toggle="collapse"
-              data-target="#navbarNavDropdown">Cikkek</a>
+            <a class="nav-link" href="/cikkek">Cikkek</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Dropdown link
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li id="navbar-generated-links">
           </li>
         </ul>
       </div>
@@ -80,215 +68,8 @@
     </nav>
   </div>
   <main id="content" class="container">
-    <div id="mainPage">
-      <div class="bookingContainer mt-4 shadow">
-        <img class="bigScreen img-fluid rounded" src="img/accountant-big.jpg" alt="Könyvelö fotó.">
 
-        <img class="smallScreen img-fluid rounded" src="img/accountant-small.jpg" alt="Könyvelö fotó.">
-        <div class="content " style="padding: 0px; ">
-          <h1 class="font-bold  ml-3 ">Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési teendő.
-          </h1>
-        </div>
-      </div>
-      <p class="font text-justify mt-4">Többéves adószakértői, adótanácsadói, mérlegképes könyvelői tapasztalattal
-        segítem
-        leendő és jelenlegi
-        ügyfeleimet. Megbízhatóság, szerződött garancia titoktartással vállalkozása biztonsága érdekében.
-      </p>
-      <p class="font text-justify">Amennyiben vélemények birtokában szeretné meghozni vállalkozása fontos döntéseit,
-        keressen bizalommal. Segítek
-        megoldást találni az adózás útvesztőjében.
-      </p>
-      <div class="text-center col-lg-6 offset-sm-3 offset-lg-3 mt-3 mb-3">
-        <img class="col-7 rounded-circle " src="img/studies.jpg" alt="tanulmányok könyv fotó">
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h1 class="font-bold text-center">Tanulmányok</h1>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2009.01.01</h5>
-              <p class="card-text">PM.regisztrált adószakértő, adótanácsadó Adótanácsadók Egyesületének tagsága mellett
-                kiváló minősítésű
-                védjegyhasználattal.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2003.01.01-</h5>
-              <p class="card-text">PM.regisztrált mérlegképes könyvelő.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2004.09.13-10.15.</h5>
-              <p class="card-text">GKM-Fejlesztési projektek,kapcsolódó pályázatok PL-0603</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2001-2003</h5>
-              <p class="card-text">Perfekt Zrt.-adótanácsadó</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">1999-2001.</h5>
-              <p class="card-text">Perfekt Zrt.-mérlegképes könyvelő</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">1983-1988.</h5>
-              <p class="card-text">Szlovák Műszaki Egyetem Vegyészmérnöki Kara-MSC vegyészmérnök</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h1 class="font-bold text-center">Munkahelyek, Munkakörök</h1>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2017-</h5>
-              <p class="card-text">Saldo Zrt. – gazdasági tanácsadó, számvitel, társasági adó, kisadók területén.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card bg-secondary text-white shadow" style="height:100%">
-            <div class="card-body">
-              <h5 class="card-title">2016-2017</h5>
-              <p class="card-text"> Bírósági Végrehajtói Kar - Főkönyvelő</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card text-white bg-info shadow">
-            <div class="card-body">
-              <h5 class="card-title">2011-2015.12.31.</h5>
-              <p class="card-text">VEGYTERV Zrt.-gazdasági vezető</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-          <div class="card bg-secondary text-white shadow">
-            <div class="card-body">
-              <h5 class="card-title">2005-</h5>
-              <p class="card-text">PROMARK-VF Kft.-Ügyvezető igazgató</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div id="items" style="display: none;" class="">
-      <div class="card mt-5 mb-3">
-        <div class="card-header text-center">
-          <h2 class="font-bold">Cikkek</h2>
-        </div>
-      </div>
-      <div id="articlesRoot" class="row">
-      </div>
-    </div>
-    <div id="booking" style="display: none;">
-      <div class="bookingContainer mt-4 shadow">
-        <img class="smallScreen rounded img-fluid " style="width:100%;" src="img/booking-small.jpg" alt="naptár fotó">
-        <img class="bigScreen rounded img-fluid " style="width:100%;" src="img/booking-big.jpg" alt="naptár fotó">
 
-        <div class="content">
-          <h4 class="font-bold">Foglaljon időpontot most.</h4>
-          <h6> A tanácsadói díjról a válasz e-mailben tájékoztatom.</h6>
-        </div>
-      </div>
-      <div id="avaiableTimes">
-      </div>
-      <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered pr-1" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="bookingModalLongTitle">
-                <div id="actualDateTime"></div>
-                Kérem töltse ki a foglaláshoz az adatait.
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="bookingInputName">Teljes név:</label>
-                <input type="text" class="form-control" id="bookingInputName" aria-describedby="nameHelp"
-                  placeholder="Név">
-              </div>
-              <div class="form-group">
-                <label for="bookingInputEmail">Email cím:</label>
-                <input type="email" class="form-control" id="bookingInputEmail" aria-describedby="emailHelp"
-                  placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="meetingType">Találkozó módja:</label>
-                <select id="meetingType" class="custom-select col-5">
-                  <option value="SKYPE">Skype</option>
-                  <option value="PERSONAL">Személyes</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="bookingInputText">Rövid leírás:</label>
-                <textarea class="form-control" id="bookingInputText" type="text" rows="3"
-                  placeholder="Kérem röviden írja le milyen ügyben keresett fel."></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="toBooking">Lefoglalom</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="bookingSucces" tabindex="-1" role="dialog" aria-labelledby="bookingModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered pr-1 " role="document">
-          <div class="modal-content">
-            <div class="modal-body bg-success shadow rounded ">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h3 class="text-center font-bold text-white ">Sikeres foglalás.</h3>
-              <h5 class="text-center font text-white ">Amenyiben nem kap emailt az idöpont megerösitéséröl a találkozó
-                elött, kérem keressen telefonon.</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal fade" id="bookingError" tabindex="-1" role="dialog" aria-labelledby="bookingModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered pr-1 " role="document">
-          <div class="modal-content">
-            <div class="modal-body bg-danger shadow rounded ">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h3 class="text-center font-bold text-white ">Sikertelen foglalás.</h3>
-              <h5 class="text-center font text-white ">Sajnáljuk váratlan hiba miatt meghiusult a foglalás.</h5>
-            </div>
-          </div>
-        </div>
-      </div>
   </main>
   <div id="footer" class="bg-dark text-white">
     <div class="col-md-12 text-center  ">
@@ -348,7 +129,6 @@
     </footer>
 
   </div>
-  <script src="main.js"></script>
 </body>
 
 </html>

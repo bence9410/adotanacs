@@ -11,7 +11,7 @@ import hu.beni.adotanacsadas.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/cikkek")
+@RequestMapping("/articles")
 @RequiredArgsConstructor
 public class ArticleController {
 
