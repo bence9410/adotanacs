@@ -1,4 +1,5 @@
-
+var availableBookings = ["14:30", "16:00", "17:30"];
+var available = ["PM2_30", "PM4_00", "PM5_30"];
 
 var articles = [];
 $.ajax({
@@ -14,23 +15,23 @@ $.ajax({
 
     }
 })
+var weeks = [];
+$.ajax({
+    url: "/free-times",
+    method: "GET",
+    success: function (data) {
+        $.each(data, function (key, value) {
+            console.log(key + " " + value);
+            var availableTimesRoot = $("#avaiableTimes");
+            availableTimesRoot.append(generateDay(key, value));
 
 
-var weeks = [nextFarFriday()];
+        });
 
-for (let i = 0; i < 2; i++) {
-    let date = new Date(weeks[0].getTime())
-    date.setDate(date.getDate() + 7 * (i + 1))
-    weeks.push(date)
-}
 
-var availableTimesRoot = $("#avaiableTimes");
-for (let i = 0; i < weeks.length; i++) {
-    availableTimesRoot.append(generateDay(weeks[i]));
 
-}
-var dateTime = "";
-
+    }
+})
 
 function itemsShow() {
     $("#items").show();
@@ -59,18 +60,6 @@ function bookingShow() {
 
 }
 
-function addArticle() {
-    var titleElement = $("#title");
-    var articleElement = $("#article");
-    var title = titleElement.val();
-    var article = articleElement.val();
-    articles.push({ title, article })
-    $("#articlesRoot").append(convertToHtmlCard(title, article));
-    titleElement.val("");
-    articleElement.val("");
-
-}
-
 function convertToHtmlCard(title, article) {
     return "<div class=\"col-12 offet-1 col-md-6 mb-3 mb-md-4\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + title + "</h5><p class=\"card-text\">" + article + "</p></div></div></div>";
 
@@ -82,36 +71,47 @@ function showBookingModal(time, monthAndDay) {
     var month = parts[0];
     var day = parts[1];
     var hour = $("#" + time.replace(':', '') + monthAndDay.replace(',', '')).val();
-    $("#actualDateTime").html((month < 10 ? "0" + month : month) + "." + day + ". Péntek " + time + (hour == "0" ? " 30 perc" : " 60 perc"));
-    $("#toBooking").attr("onclick", "toBooking(" + month + "," + day + ", '" + time.replace(':', "','") + "'," + hour + ")");
+    $("#actualDateTime").html(month + "." + day + ". Péntek " + time + (hour == "HALF_HOUR" ? " 30 perc" : " 60 perc"));
+    $("#toBooking").attr("onclick", "toBooking('" + month + "' , '" + day + "' , '" + time.replace(':', "','") + "', '" + hour + "')");
 
 }
-function toBooking(month, day, timehour, timeMin, hour) {
+function toBooking(month, day, timehour, timeMin, meetingLenght) {
     var name = $("#bookingInputName").val();
     var email = $("#bookingInputEmail").val();
     var meetingType = $("#meetingType").val();
     var description = $("#bookingInputText").val();
-    var booking = { month, day, time: timehour + ":" + timeMin, hour, name, email, meetingType, description };
+    var booking = { name, email, meetingType, meetingLenght, description, meetingDate: "2020-" + month + "-" + day, meetingTime: available[availableBookings.indexOf(timehour + ":" + timeMin)] };
     $("#bookingModal").modal("hide");
-    $("#finalBooking").html(JSON.stringify(booking));
-    $("#bookingSucces").modal("show");
-    $("#bookingInputName").val("");
-    $("#bookingInputEmail").val("");
-    $("#bookingInputText").val("");
-    var card = $("#" + timehour + timeMin + month + day + "Card");
 
-    if (card.siblings().length) {
-        console.log("elso" + card.siblings().length);
-        card.remove();
+    $.ajax({
+        url: "/book",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(booking),
+        success: function () {
+            $("#bookingSucces").modal("show");
+            var card = $("#" + timehour + timeMin + month + day + "Card");
+            console.log("#" + timehour + timeMin + month + day + "Card")
 
-    } else {
+            if (card.siblings().length) {
+                card.remove();
 
-        card.parent().parent().remove();
-        console.log("második" + card.siblings().length);
+            } else {
+                card.parent().parent().remove();
+
+            }
+        },
+        error: function () {
+            $("#bookingError").modal("show")
+        },
+        completed: function () {
+            $("#bookingInputName").val("");
+            $("#bookingInputEmail").val("");
+            $("#bookingInputText").val("");
 
 
-    }
-
+        }
+    });
 }
 
 function nextFarFriday() {
@@ -126,14 +126,20 @@ function nextFarFriday() {
     return date;
 }
 
-function generateDay(date) {
-    var availableBookings = ["14:30", "16:00", "17:30"];
+function generateDay(date, times) {
+    var dateParts = date.split("-");
+    var realTimes = [];
+
+    for (var i = 0; i < times.length; i++) {
+        realTimes.push(availableBookings[available.indexOf(times[i])]);
+    }
+
     var fri = `<div class="card mt-5 mb-3 day">
-              <div class="card-header text-center">`+ ((date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) + "." + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + `. Péntek</div>
+              <div class="card-header text-center">`+ dateParts[1] + "." + dateParts[2] + `. Péntek</div>
               <div class="card-body">`;
 
-    for (let i = 0; i < availableBookings.length; i++) {
-        fri += generateTime(availableBookings[i], (date.getMonth() + 1) + "," + date.getDate());
+    for (let i = 0; i < realTimes.length; i++) {
+        fri += generateTime(realTimes[i], dateParts[1] + "," + dateParts[2]);
 
     }
     return fri + "</div></div>";
@@ -146,8 +152,8 @@ function generateTime(time, monthAndDay) {
     <div class="card-body row">
       <div class="col-6  pt-2">`+ time + `-tól</div>
     <select id="`+ id + `" class="custom-select col-5" >
-      <option value="0">30 perc</option>
-      <option value="1">60 perc</option>
+      <option value="HALF_HOUR">30 perc</option>
+      <option value="ONE_HOUR">60 perc</option>
     </select>
     <div class="col-12 text-center mt-2">
     <input type="button" onclick="showBookingModal('`+ time + "','" + monthAndDay + `')" class="btn btn-success col-12 shadow " value="Foglalás">
