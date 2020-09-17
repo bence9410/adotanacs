@@ -31,4 +31,6 @@ public class Article {
     @CreationTimestamp
     private LocalDate date;
 
+    private String articleSearch;
+
 }

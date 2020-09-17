@@ -8,13 +8,15 @@ $.ajax({
         $.each(data, function (key, value) {
             var availableTimesRoot = $("#avaiableTimes");
             availableTimesRoot.append(generateDay(key, value));
-
-
         });
     }
 })
 
 function showBookingModal(time, monthAndDay) {
+    $("#bookingInputName").val("");
+    $("#bookingInputEmail").val("");
+    $("#bookingInputText").val("");
+    $("#bookingNotValidMessage").hide();
     $("#bookingModal").modal("show");
     $("#actualDateTime").val();
     var parts = monthAndDay.split(',');
@@ -31,36 +33,71 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
     var meetingType = $("#meetingType").val();
     var description = $("#bookingInputText").val();
     var booking = { name, email, meetingType, meetingLenght, description, meetingDate: "2020-" + month + "-" + day, meetingTime: available[availableBookings.indexOf(timehour + ":" + timeMin)] };
-    $("#bookingModal").modal("hide");
 
-    $.ajax({
-        url: "/book",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(booking),
-        success: function () {
-            $("#bookingSucces").modal("show");
-            var card = $("#" + timehour + timeMin + month + day + "Card");
 
-            if (card.siblings().length) {
-                card.remove();
 
-            } else {
-                card.parent().parent().remove();
+    ///kliens oldali validáció
+    var notValidError = [];
+    if (name == "") {
+        notValidError.push("Nem lehet üres a név mező!");
+    }
+    if (email == "") {
+        notValidError.push("Nem lehet üres a email cím mező!");
+    }
+    if (description == "") {
+        notValidError.push("Nem lehet üres a rövid leírás mező!");
+    }
+    if (name.length < 3 || name.length > 30) {
+        notValidError.push("A név mező legalább 3 de maximum 30 karaktert tartalmazhat!");
+    }
+    var regex = /.+@.+\..+/;
+
+    if (!regex.test(email)) {
+        notValidError.push("Az email mezőnek tartalmaznia kell @ és . karaktereket!");
+    }
+    if (description.length < 3 || description.length > 60) {
+        notValidError.push("A rövid leírás  mezönek legalább 3 de maximum 60 karaktert tartalmazhat!");
+    }
+    if (notValidError.length != 0) {
+        $("#bookingNotValidMessage").show();
+        $("#bookingNotValidMessage").html(notValidError.join("<br>"));
+    } else {
+
+        $.ajax({
+            url: "/book",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(booking),
+            success: function () {
+                $("#bookingSucces").modal("show");
+                var card = $("#" + timehour + timeMin + month + day + "Card");
+
+                if (card.siblings().length) {
+                    card.remove();
+
+                } else {
+                    card.parent().parent().remove();
+
+                }
+                $("#bookingModal").modal("hide");
+            },
+            error: function () {
+                $("#bookingError").modal("show")
+            },
+            completed: function () {
+                $("#bookingInputName").val("");
+                $("#bookingInputEmail").val("");
+                $("#bookingInputText").val("");
+
 
             }
-        },
-        error: function () {
-            $("#bookingError").modal("show")
-        },
-        completed: function () {
-            $("#bookingInputName").val("");
-            $("#bookingInputEmail").val("");
-            $("#bookingInputText").val("");
+        });
+    }
 
 
-        }
-    });
+
+
+
 }
 
 function nextFarFriday() {

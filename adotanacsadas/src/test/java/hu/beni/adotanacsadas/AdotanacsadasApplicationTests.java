@@ -69,7 +69,7 @@ public class AdotanacsadasApplicationTests {
 	}
 
 	@Test
-	public void bokingDate() {
+	public void bookingDate() {
 		driverFacade.get("http://localhost:" + port);
 		driverFacade.click("#navbarButton");
 		driverFacade.click(".navbar-nav li:nth-child(2)");
@@ -94,6 +94,41 @@ public class AdotanacsadasApplicationTests {
 		driverFacade.click("#bookingSucces button ");
 		Assert.assertEquals(1, bookingRepository.count());
 
+	}
+
+	@Test
+	public void bookingValidate() {
+		driverFacade.get("http://localhost:" + port);
+		driverFacade.click("#navbarButton");
+		driverFacade.click(".navbar-nav li:nth-child(2)");
+		driverFacade.text(".bookingContainer h4", "Foglaljon időpontot most.");
+		driverFacade.text(".day:nth-child(1) .card:nth-child(1) .card-body div:nth-child(1) ", "14:30-tól");
+		driverFacade.select(".day:nth-child(1) .card:nth-child(1) select", "ONE_HOUR");
+		driverFacade.click(".day:nth-child(1) input ");
+		driverFacade.text("#actualDateTime", "09.25. Péntek 14:30 60 perc");
+		driverFacade.write("#bookingInputEmail", "varga@gmail.com");
+		driverFacade.write("#bookingInputText", "Üdvözlöm!");
+		driverFacade.click("#toBooking");
+		driverFacade.text("#bookingNotValidMessage",
+				"Nem lehet üres a név mező!" + "\n" + "A név mező legalább 3 de maximum 30 karaktert tartalmazhat!");
+		driverFacade.click(".modal-header button");
+		driverFacade.hidden(".modal-backdrop");
+		driverFacade.click(".day:nth-child(1) input ");
+		driverFacade.write("#bookingInputName", "Varga Virag");
+		driverFacade.write("#bookingInputEmail", "vargagmail.com");
+		driverFacade.write("#bookingInputText", "Üdvözlöm!");
+		driverFacade.click("#toBooking");
+		driverFacade.text("#bookingNotValidMessage", "Az email mezőnek tartalmaznia kell @ és . karaktereket!");
+		driverFacade.click(".modal-header button");
+		driverFacade.hidden(".modal-backdrop");
+		driverFacade.click(".day:nth-child(1) input ");
+		driverFacade.write("#bookingInputName", "Varga Virag");
+		driverFacade.write("#bookingInputEmail", "varga@gmail.com");
+		driverFacade.click("#toBooking");
+		driverFacade.text("#bookingNotValidMessage", "Nem lehet üres a rövid leírás mező!" + "\n"
+				+ "A rövid leírás mezönek legalább 3 de maximum 60 karaktert tartalmazhat!");
+		driverFacade.click(".modal-header button");
+		driverFacade.hidden(".modal-backdrop");
 	}
 
 }
