@@ -43,12 +43,10 @@ public class Article {
 
     @PreUpdate
     public void generateSearchKey() {
-        log.info("krumpli");
     }
 
     @PrePersist
     public void generateSearchKey1() {
-        log.info("krumpli");
         searchKey = title.toLowerCase().replace(" ", "-").replace('.', 'a');
     }
 

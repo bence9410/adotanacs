@@ -19,7 +19,7 @@ public class ArticleController {
     private final ArticleRepository articleRepository;
 
     @GetMapping
-    public List<Article> findAll(@RequestParam(required = false) String input) {
+    public List<Article> findAll() {
         return articleRepository.findAll();
     }
 

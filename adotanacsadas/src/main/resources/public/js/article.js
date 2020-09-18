@@ -1,3 +1,11 @@
+$("#searchInput").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $(".dropdown-menu li").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+});
+
+
 var articles = [];
 
 $.ajax({
@@ -19,15 +27,15 @@ function convertToHtmlCard(title, date, article) {
 }
 
 function getArticleSearch() {
-    var articleSearch = $("#articleSearchInput").val();
+    var articleSearch = $("#searchInput").val();
 
     if (articleText !== "") {
         articleSearch.articleSearchText = articleText;
     }
-    $("#articleSearchInput").val("");
+    $("#searchInput").val("");
 
     $.ajax({
-        url: "/articles?articleSearch=" + $("#articleSearchInput").val(),
+        url: "/articles?articleSearch=" + $("#searchInput").val(),
         method: "GET",
         success: function (data) {
 
