@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.beni.adotanacsadas.entity.Article;
@@ -18,7 +19,8 @@ public class ArticleController {
     private final ArticleRepository articleRepository;
 
     @GetMapping
-    public List<Article> findAll() {
+    public List<Article> findAll(@RequestParam(required = false) String input) {
         return articleRepository.findAll();
     }
+
 }

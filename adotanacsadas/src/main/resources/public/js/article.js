@@ -1,6 +1,5 @@
 var articles = [];
 
-
 $.ajax({
     url: "/articles",
     method: "GET",
@@ -9,7 +8,6 @@ $.ajax({
         let articlesRoot = $("#articlesRoot");
         for (let i = 0; i < articles.length; i++) {
             articlesRoot.append(convertToHtmlCard(articles[i].title, articles[i].date, articles[i].content));
-            console.log(articles);
         }
     }
 })
@@ -21,14 +19,18 @@ function convertToHtmlCard(title, date, article) {
 }
 
 function getArticleSearch() {
+    var articleSearch = $("#articleSearchInput").val();
+
+    if (articleText !== "") {
+        articleSearch.articleSearchText = articleText;
+    }
+    $("#articleSearchInput").val("");
+
     $.ajax({
-        url: "/articles",
+        url: "/articles?articleSearch=" + $("#articleSearchInput").val(),
         method: "GET",
         success: function (data) {
-            var articleSearch = {};
 
-            console.log($("#articleSearchInput").val());
-            $("#articleSearchInput").val("");
         }
     })
 
