@@ -1,14 +1,11 @@
 package hu.beni.adotanacsadas.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import hu.beni.adotanacsadas.enums.MeetingLenght;
 import hu.beni.adotanacsadas.enums.MeetingTime;
 import hu.beni.adotanacsadas.enums.MeetingType;

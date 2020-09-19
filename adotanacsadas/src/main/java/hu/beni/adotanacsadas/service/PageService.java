@@ -3,20 +3,15 @@ package hu.beni.adotanacsadas.service;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-
 import hu.beni.adotanacsadas.entity.Article;
 import hu.beni.adotanacsadas.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class PageService {
 
     private final ArticleRepository articleRepository;

@@ -2,14 +2,10 @@ package hu.beni.adotanacsadas.helper;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
-
 import org.springframework.stereotype.Component;
-
 import hu.beni.adotanacsadas.enums.MeetingTime;
 
 @Component

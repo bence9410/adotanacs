@@ -34,8 +34,6 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
     var description = $("#bookingInputText").val();
     var booking = { name, email, meetingType, meetingLenght, description, meetingDate: "2020-" + month + "-" + day, meetingTime: available[availableBookings.indexOf(timehour + ":" + timeMin)] };
 
-
-
     ///kliens oldali validáció
     var notValidError = [];
     if (name == "") {
@@ -93,10 +91,6 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
             }
         });
     }
-
-
-
-
 
 }
 

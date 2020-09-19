@@ -1,21 +1,15 @@
 package hu.beni.adotanacsadas.controller;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.core.io.ClassPathResource;
-
 import hu.beni.adotanacsadas.service.PageService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
 public class ArticleFilter implements Filter {
 
@@ -26,7 +20,6 @@ public class ArticleFilter implements Filter {
                         throws IOException, ServletException {
                 HttpServletRequest req = HttpServletRequest.class.cast(request);
                 String url = req.getRequestURL().toString();
-                log.info(url);
 
                 if (url.contains("cikkek")) {
                         response.getWriter().append(pageService.article()).close();

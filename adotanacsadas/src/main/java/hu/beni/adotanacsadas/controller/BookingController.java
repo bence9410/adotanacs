@@ -3,20 +3,16 @@ package hu.beni.adotanacsadas.controller;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Stream;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import hu.beni.adotanacsadas.entity.Booking;
 import hu.beni.adotanacsadas.enums.MeetingTime;
 import hu.beni.adotanacsadas.helper.FreeTimeGenerator;
 import hu.beni.adotanacsadas.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class BookingController {
@@ -27,8 +23,6 @@ public class BookingController {
     @PostMapping("/book")
     public void save(@RequestBody Booking booking) {
         bookingRepository.save(booking);
-        log.info(booking.toString());
-
     }
 
     @GetMapping("/free-times")
@@ -48,7 +42,6 @@ public class BookingController {
                 }
             }
         }
-
         return mapNext3Friday;
     }
 }

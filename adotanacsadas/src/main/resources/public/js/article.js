@@ -5,7 +5,6 @@ $("#searchInput").on("keyup", function () {
     });
 });
 
-
 var articles = [];
 
 $.ajax({
@@ -39,7 +38,6 @@ $.ajax({
         }
     }
 })
-
 
 function convertToHtmlCard(title, date, article) {
     return "<div class=\"col-12 col-md-6 mb-3 mb-md-4\" style=\"user-select: none;\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + title + "</h5>" +
