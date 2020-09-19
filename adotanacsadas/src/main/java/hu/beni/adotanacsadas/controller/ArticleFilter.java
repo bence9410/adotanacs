@@ -15,6 +15,7 @@ import hu.beni.adotanacsadas.service.PageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 public class ArticleFilter implements Filter {
 
@@ -23,9 +24,21 @@ public class ArticleFilter implements Filter {
         @Override
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
                         throws IOException, ServletException {
+                HttpServletRequest req = HttpServletRequest.class.cast(request);
+                String url = req.getRequestURL().toString();
+                log.info(url);
 
-                // chain.doFilter(request, response);
-                response.getWriter().append(pageService.article()).close();
+                if (url.contains("cikkek")) {
+                        response.getWriter().append(pageService.article()).close();
+
+                } else if (url.contains("idopontfoglalas")) {
+                        response.getWriter().append(pageService.booking()).close();
+                } else if (url.endsWith("5000/")) {
+                        response.getWriter().append(pageService.main()).close();
+                } else {
+                        chain.doFilter(request, response);
+                }
+
         }
 
 }

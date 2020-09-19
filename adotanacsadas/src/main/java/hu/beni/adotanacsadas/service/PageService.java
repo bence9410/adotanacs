@@ -26,37 +26,31 @@ public class PageService {
 
     @PostConstruct
     public void init() throws IOException {
-
-        main = readFileInIso("index");
-        article = replaceContentOfMain(readFileInIso("article"));
         main = readFile("index");
+        article = replaceContentOfMain(readFile("article"));
         booking = replaceContentOfMain(readFile("booking"));
         main = replaceContentOfMain(readFile("content"));
 
     }
 
-    private String readFile(String htmlFileName) throws IOException {
-        return new String(
-                new ClassPathResource("public/html/" + htmlFileName + ".html").getInputStream().readAllBytes());
-    }
-
-    private String readFileInIso(String htmlFileName) throws IOException {
+    private String readFile(final String htmlFileName) throws IOException {
         return new String(
                 new ClassPathResource("public/html/" + htmlFileName + ".html").getInputStream().readAllBytes(),
                 "ISO-8859-1");
     }
 
-    private String replaceContentOfMain(String content) {
+    private String replaceContentOfMain(final String content) {
         return main.replace("id=\"content\" class=\"container\">", "id=\"content\" class=\"container\">" + content);
 
     }
 
-    private String articleLinksReplace(String html) {
-        List<Article> articles = articleRepository.findAll();
+    private String articleLinksReplace(final String html) {
+        final List<Article> articles = articleRepository.findAll();
 
         String links = "";
         for (int i = 0; i < articles.size(); i++) {
-            Article article = articles.get(i);
+            final Article article = articles.get(i);
+
             try {
                 links += " <li class=\"nav-item\"><a class=\"nav-link\" href=\"/cikkek/"
                         + new String(article.getSearchKey().getBytes("UTF-8"), "ISO-8859-1") + "\">"
@@ -65,6 +59,7 @@ public class PageService {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
         }
         return html.replace("<!--LINKS-->", links);
 

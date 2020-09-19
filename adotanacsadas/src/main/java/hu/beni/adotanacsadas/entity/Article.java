@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
@@ -23,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Slf4j
 public class Article {
 
     @Id
@@ -34,20 +34,17 @@ public class Article {
 
     private String title;
 
+    @Lob
     private String content;
 
-    @CreationTimestamp
     private LocalDate date;
 
     private String articleSearch;
 
-    @PreUpdate
-    public void generateSearchKey() {
-    }
-
     @PrePersist
-    public void generateSearchKey1() {
-        searchKey = title.toLowerCase().replace(" ", "-").replace('.', 'a');
+    public void generateSearchKey() {
+        searchKey = title.toLowerCase().replace(" ", "-").replace('.', '-').replace("á", "a").replace("é", "e")
+                .replace("ó", "o").replace("--", "-");
     }
 
 }

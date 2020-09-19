@@ -1,5 +1,7 @@
 package hu.beni.adotanacsadas;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +26,12 @@ public class AdotanacsadasApplication {
 	@Bean
 	public ApplicationRunner applicationRunner(ArticleRepository articleRepository) {
 		return args -> {
-			articleRepository.save(Article.builder().title("Alma §154. fa").content("Itt egy almafa.").build());
+			articleRepository.save(Article.builder()
+					.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
+					.date(LocalDate.of(2020, 9, 1))
+					.content(
+							"A Kkv. tv. 4. § (5) bekezdése értelmében a vállalkozások között fennálló kapcsolódó vállalkozási jogviszonyt az is megalapozza, ha az egy természetes személy vagy közösen fellépő természetes személyek egy csoportja révén jön létre, amennyiben a vállalkozások a tevékenységüket vagy annak egy részét az érintett piacon vagy egymással szomszédos piacokon folytatják. Kapcsolat lehet többségi tulajdonlás, döntő irányítási vagy ellenőrzési jogkör. A közösen fellépő természetes személyek csoportja úgy határozható meg, hogy a társaságoknak olyan magánszemély tulajdonosai vannak, akik üzleti érdekeiket összehangoltan érvényesítik, valamilyen célból közösen cselekednek. Ennek értelmében egymástól független természetes személyek által tulajdonolt vállalkozások esetén is fennállhat kapcsolódó vállalkozási viszony. Minden esetben az egyedi tényállás alapján lehet meghatározni, hogy a körülmények alapján a közös gazdasági érdek kikövetkeztethető-e.")
+					.build());
 			articleRepository.save(Article.builder().title("Körte §155. fa").content("Itt van sok körte.").build());
 		};
 
@@ -35,7 +42,7 @@ public class AdotanacsadasApplication {
 		FilterRegistrationBean<ArticleFilter> registrationBean = new FilterRegistrationBean<>();
 
 		registrationBean.setFilter(new ArticleFilter(pageService));
-		registrationBean.addUrlPatterns("/cikkek/*");
+		registrationBean.addUrlPatterns("/*");
 
 		return registrationBean;
 	}
