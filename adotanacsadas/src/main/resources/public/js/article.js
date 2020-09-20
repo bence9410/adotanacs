@@ -17,25 +17,40 @@ $.ajax({
 
         var getUrl = window.location.pathname.replace("/cikkek/", "");
         var decoder = decodeURIComponent(getUrl);
-        for (let i = 0; i < articles.length; i++) {
+        if (articles.length == 1 && window.location.pathname == "/cikkek") {
+            articlesRoot.append("<div class=\"col-12 col-md-10 offset-md-1 mb-3 mb-md-4 unselectable\" style=\"user-select: none;\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + articles[0].title + "</h5>" +
+                "<h6 class=\"card-subtitle mb-2 \">" + articles[0].date + "</h6><p class=\"card-text \" >" + articles[0].content + "</p></div></div></div>");
+            $("#searchLinks").append("<li class=\"pl-1\"><a href=\"/cikkek/" + articles[0].searchKey + '"' + "style=\"user-select: none;\">" + articles[0].title + "</a></li>");
 
-
-            if (articles.length == 1 && decoder == articles[i].searchKey) {
-                articlesRoot.append("<div class=\"col-12 col-md-10 offset-md-1 mb-3 mb-md-4 unselectable\" style=\"user-select: none;\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + articles[i].title + "</h5>" +
-                    "<h6 class=\"card-subtitle mb-2 \">" + articles[i].date + "</h6><p class=\"card-text \" >" + articles[i].content + "</p></div></div></div>");
-
-            }
-            if (decoder == articles[i].searchKey) {
-                $("#searchResult").html("");
-                $("#searchResult").append(articles[i].title.substring(0, 30));
-            }
-            if (window.location.pathname == "/cikkek") {
+        } else if (window.location.pathname == "/cikkek") {
+            for (let i = 0; i < articles.length; i++) {
                 articlesRoot.append(convertToHtmlCard(articles[i].title, articles[i].date, articles[i].content));
+                $("#searchLinks").append("<li class=\"pl-1\"><a href=\"/cikkek/" + articles[i].searchKey + '"' + "style=\"user-select: none;\">" + articles[i].title + "</a></li>");
 
             }
-            $("#searchLinks").append("<li class=\"pl-1\"><a href=\"/cikkek/" + articles[i].searchKey + '"' + "style=\"user-select: none;\">" + articles[i].title + "</a></li>");
+        } else {
+            for (let i = 0; i < articles.length; i++) {
 
+                if (decoder == articles[i].searchKey) {
+                    articlesRoot.append("<div class=\"col-12 col-md-10 offset-md-1 mb-3 mb-md-4 unselectable\" style=\"user-select: none;\"><div class=\"card text-white bg-info shadow\" ><div class=\"card-body\"><h5 class=\"card-title\">" + articles[i].title + "</h5>" +
+                        "<h6 class=\"card-subtitle mb-2 \">" + articles[i].date + "</h6><p class=\"card-text \" >" + articles[i].content + "</p></div></div></div>");
+
+                    $("#searchResult").html("");
+                    $("#searchResult").append(articles[i].title.substring(0, 30));
+                }
+                if (window.location.pathname == "/cikkek") {
+                    articlesRoot.append(convertToHtmlCard(articles[i].title, articles[i].date, articles[i].content));
+                    for (let i = 0; i < articles.length; i++) {
+                        articlesRoot.append(convertToHtmlCard(articles[i].title, articles[i].date, articles[i].content));
+                        $("#searchLinks").append("<li class=\"pl-1\"><a href=\"/cikkek/" + articles[i].searchKey + '"' + "style=\"user-select: none;\">" + articles[i].title + "</a></li>");
+
+                    }
+                }
+                $("#searchLinks").append("<li class=\"pl-1\"><a href=\"/cikkek/" + articles[i].searchKey + '"' + "style=\"user-select: none;\">" + articles[i].title + "</a></li>");
+
+            }
         }
+
     }
 })
 
