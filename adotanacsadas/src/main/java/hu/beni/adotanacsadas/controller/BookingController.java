@@ -11,6 +11,7 @@ import hu.beni.adotanacsadas.entity.Booking;
 import hu.beni.adotanacsadas.enums.MeetingTime;
 import hu.beni.adotanacsadas.helper.FreeTimeGenerator;
 import hu.beni.adotanacsadas.repository.BookingRepository;
+import hu.beni.adotanacsadas.service.BookingService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -19,10 +20,11 @@ public class BookingController {
 
     private final BookingRepository bookingRepository;
     private final FreeTimeGenerator freeTimeGenerator;
+    private final BookingService bookingService;
 
     @PostMapping("/book")
     public void save(@RequestBody Booking booking) {
-        bookingRepository.save(booking);
+        bookingService.makeBooking(booking);
     }
 
     @GetMapping("/free-times")

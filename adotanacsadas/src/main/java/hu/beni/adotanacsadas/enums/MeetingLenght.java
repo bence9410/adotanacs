@@ -1,5 +1,12 @@
 package hu.beni.adotanacsadas.enums;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum MeetingLenght {
-    HALF_HOUR, ONE_HOUR;
+    HALF_HOUR("30"), ONE_HOUR("60");
+
+    private final String hu;
 }

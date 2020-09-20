@@ -1,11 +1,15 @@
 package hu.beni.adotanacsadas;
 
 import java.time.LocalDate;
+import java.util.Properties;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+
 import hu.beni.adotanacsadas.controller.ArticleFilter;
 import hu.beni.adotanacsadas.entity.Article;
 import hu.beni.adotanacsadas.repository.ArticleRepository;
@@ -16,12 +20,12 @@ public class AdotanacsadasApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdotanacsadasApplication.class, args);
-
 	}
 
 	@Bean
-	public ApplicationRunner applicationRunner(ArticleRepository articleRepository) {
+	public ApplicationRunner applicationRunner(JavaMailSender mailSender, ArticleRepository articleRepository) {
 		return args -> {
+
 			articleRepository.save(Article.builder()
 					.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
 					.date(LocalDate.of(2020, 9, 1))

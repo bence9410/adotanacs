@@ -9,7 +9,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import hu.beni.adotanacsadas.service.PageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 public class ArticleFilter implements Filter {
 
@@ -20,13 +22,17 @@ public class ArticleFilter implements Filter {
                         throws IOException, ServletException {
                 HttpServletRequest req = HttpServletRequest.class.cast(request);
                 String url = req.getRequestURL().toString();
-
+                String ipAddress = req.getHeader("X-FORWARDED-FOR");
+                if (ipAddress == null) {
+                        ipAddress = request.getRemoteAddr();
+                }
+                log.info(ipAddress);
                 if (url.contains("cikkek")) {
                         response.getWriter().append(pageService.article()).close();
 
                 } else if (url.contains("idopontfoglalas")) {
                         response.getWriter().append(pageService.booking()).close();
-                } else if (url.endsWith("5000/")) {
+                } else if (url.endsWith(".com/") || url.endsWith("5000/")) {
                         response.getWriter().append(pageService.main()).close();
                 } else {
                         chain.doFilter(request, response);
