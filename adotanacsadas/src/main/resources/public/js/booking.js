@@ -2,7 +2,7 @@ var availableBookings = ["14:30", "16:00", "17:30"];
 var available = ["PM2_30", "PM4_00", "PM5_30"];
 
 $.ajax({
-    url: "/free-times",
+    url: "/api/free-times",
     method: "GET",
     success: function (data) {
         $.each(data, function (key, value) {
@@ -13,6 +13,7 @@ $.ajax({
 })
 
 function showBookingModal(time, monthAndDay) {
+    $("#dataManagement").prop("checked", false);
     $("#bookingInputName").val("");
     $("#bookingInputEmail").val("");
     $("#bookingInputText").val("");
@@ -50,19 +51,28 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
     }
     var regex = /.+@.+\..+/;
 
-    if (!regex.test(email)) {
-        notValidError.push("Az email mezőnek tartalmaznia kell @ és . karaktereket!");
+    if (!regex.test(email) || email.length > 50) {
+        notValidError.push("Az email mezőnek tartalmaznia kell @ és . karaktereket és nem lehet több mint 50 karakter!");
     }
-    if (description.length < 3 || description.length > 60) {
+    if (description.length < 3 || description.length > 200) {
         notValidError.push("A rövid leírás  mezönek legalább 3 de maximum 60 karaktert tartalmazhat!");
     }
+
+
+    if (!$("#dataManagement").is(':checked')) {
+        notValidError.push("Kérem fogadja el a hozzájárulást.");
+    }
+
+
     if (notValidError.length != 0) {
         $("#bookingNotValidMessage").show();
         $("#bookingNotValidMessage").html(notValidError.join("<br>"));
     } else {
 
+        $("#bookingModal").modal("hide");
+        $("#toBooking").prop('disabled', true);
         $.ajax({
-            url: "/book",
+            url: "/api/book",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(booking),
@@ -77,7 +87,7 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
                     card.parent().parent().remove();
 
                 }
-                $("#bookingModal").modal("hide");
+
             },
             error: function () {
                 $("#bookingError").modal("show")
@@ -86,8 +96,6 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
                 $("#bookingInputName").val("");
                 $("#bookingInputEmail").val("");
                 $("#bookingInputText").val("");
-
-
             }
         });
     }

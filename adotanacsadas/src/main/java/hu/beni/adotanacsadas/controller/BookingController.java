@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.beni.adotanacsadas.entity.Booking;
 import hu.beni.adotanacsadas.enums.MeetingTime;
@@ -14,6 +15,7 @@ import hu.beni.adotanacsadas.repository.BookingRepository;
 import hu.beni.adotanacsadas.service.BookingService;
 import lombok.RequiredArgsConstructor;
 
+@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class BookingController {

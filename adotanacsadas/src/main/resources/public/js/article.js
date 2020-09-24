@@ -8,7 +8,7 @@ $("#searchInput").on("keyup", function () {
 var articles = [];
 
 $.ajax({
-    url: "/articles",
+    url: "/api/articles",
     method: "GET",
     success: function (data) {
         articles = data;

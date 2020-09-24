@@ -1,12 +1,9 @@
 package hu.beni.adotanacsadas.service;
 
-import java.time.format.DateTimeFormatter;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import hu.beni.adotanacsadas.entity.Booking;
 import hu.beni.adotanacsadas.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;

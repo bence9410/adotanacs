@@ -9,7 +9,7 @@ import hu.beni.adotanacsadas.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/articles")
+@RequestMapping("/api/articles")
 @RequiredArgsConstructor
 public class ArticleController {
 
