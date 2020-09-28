@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+
 import org.springframework.stereotype.Component;
 import hu.beni.adotanacsadas.enums.MeetingTime;
 
@@ -28,7 +30,7 @@ public class FreeTimeGenerator {
 
     public Map<LocalDate, MeetingTime[]> next3Friday() {
         LocalDate localDate = calcNextFarFriday();
-        Map<LocalDate, MeetingTime[]> map = new HashMap<>();
+        Map<LocalDate, MeetingTime[]> map = new TreeMap<>();
         map.put(localDate, MeetingTime.values());
         map.put(nextFriday(localDate), MeetingTime.values());
         map.put(nextFriday(nextFriday(localDate)), MeetingTime.values());
