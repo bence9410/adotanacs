@@ -31,21 +31,8 @@ public class BookingController {
 
     @GetMapping("/free-times")
     public Map<LocalDate, MeetingTime[]> findAvailableTimes() {
-        Map<LocalDate, MeetingTime[]> mapNext3Friday = freeTimeGenerator.next3Friday();
+        Map<LocalDate, MeetingTime[]> mapNext3Friday = freeTimeGenerator.getFindAvailableTimes();
 
-        for (Booking booking : bookingRepository.findAll()) {
-            MeetingTime[] meetingDate = mapNext3Friday.get(booking.getMeetingDate());
-
-            if (meetingDate != null) {
-
-                if (meetingDate.length == 1) {
-                    mapNext3Friday.remove(booking.getMeetingDate());
-                } else {
-                    mapNext3Friday.put(booking.getMeetingDate(), Stream.of(meetingDate)
-                            .filter(e -> !e.equals(booking.getMeetingTime())).toArray(MeetingTime[]::new));
-                }
-            }
-        }
         return mapNext3Friday;
     }
 }
