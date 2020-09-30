@@ -70,7 +70,6 @@ function toBooking(month, day, timehour, timeMin, meetingLenght) {
     } else {
 
         $("#bookingModal").modal("hide");
-        $("#toBooking").prop('disabled', true);
         $.ajax({
             url: "/api/book",
             method: "POST",

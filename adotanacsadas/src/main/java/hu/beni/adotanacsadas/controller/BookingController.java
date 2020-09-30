@@ -3,6 +3,9 @@ package hu.beni.adotanacsadas.controller;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +28,7 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/book")
-    public void save(@RequestBody Booking booking) {
+    public void save(@Valid @RequestBody Booking booking) {
         bookingService.makeBooking(booking);
     }
 

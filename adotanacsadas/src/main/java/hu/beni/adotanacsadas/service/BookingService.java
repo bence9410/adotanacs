@@ -12,9 +12,7 @@ import hu.beni.adotanacsadas.enums.MeetingTime;
 import hu.beni.adotanacsadas.helper.FreeTimeGenerator;
 import hu.beni.adotanacsadas.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -42,6 +40,7 @@ public class BookingService {
             throw new RuntimeException("Wrong meeting time.");
         }
         bookingRepository.save(booking);
+        sendEmail(booking);
 
     }
 
