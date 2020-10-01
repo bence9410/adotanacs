@@ -3,6 +3,9 @@ package hu.beni.adotanacsadas.controller;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,27 +28,14 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/book")
-    public void save(@RequestBody Booking booking) {
+    public void save(@Valid @RequestBody Booking booking) {
         bookingService.makeBooking(booking);
     }
 
     @GetMapping("/free-times")
     public Map<LocalDate, MeetingTime[]> findAvailableTimes() {
-        Map<LocalDate, MeetingTime[]> mapNext3Friday = freeTimeGenerator.next3Friday();
+        Map<LocalDate, MeetingTime[]> mapNext3Friday = freeTimeGenerator.getFindAvailableTimes();
 
-        for (Booking booking : bookingRepository.findAll()) {
-            MeetingTime[] meetingDate = mapNext3Friday.get(booking.getMeetingDate());
-
-            if (meetingDate != null) {
-
-                if (meetingDate.length == 1) {
-                    mapNext3Friday.remove(booking.getMeetingDate());
-                } else {
-                    mapNext3Friday.put(booking.getMeetingDate(), Stream.of(meetingDate)
-                            .filter(e -> !e.equals(booking.getMeetingTime())).toArray(MeetingTime[]::new));
-                }
-            }
-        }
         return mapNext3Friday;
     }
 }
