@@ -1,20 +1,20 @@
 <template>
   <div class="main">
-    <div class="bookingContainer">
+    <div class="bookingContainer elevation-6 pt-2" >
       <v-img
-        class="bigScreen"
+        class="bigScreen  rounded"
         :aspect-ratio="2.857"
         src="../assets/accountant-big.jpg"
         alt="Könyvelö fotó."
       />
       <v-img
-        class="smallScreen"
+        class="smallScreen  rounded"
         :aspect-ratio="1.333"
         src="../assets/accountant-small.jpg"
         alt="Könyvelö fotó."
       />
       <div class="content" style="padding: 0px">
-        <h1 class="font-bold ml-3">
+        <h1 class="font-bold ml-3" style="line-height: 1.3;">
           Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési
           teendő.
         </h1>
@@ -30,124 +30,29 @@
       döntéseit, keressen bizalommal. Segítek megoldást találni az adózás
       útvesztőjében.
     </p>
-    <div class="text-center col-lg-6 offset-sm-3 offset-lg-3 mt-3 mb-3">
-      <img
-        class="col-7 rounded-circle"
-        src="img/studies.jpg"
+    <v-col cols="8" offset="2" md="2"  offset-md="5" >
+     <v-img class="rounded-circle"
+        :aspect-ratio="1"
+        src="../assets/studies.jpg"
         alt="Tanulmányok könyv fotó"
       />
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <h1 class="font-bold text-center">Tanulmányok</h1>
-      </div>
-      <v-card shaped class="mx-auto" max-width="400">
-        <v-card-title>Top 10 Australian beaches</v-card-title>
-        <v-card-subtitle class="pb-0">2009.01.01</v-card-subtitle>
-
-        <v-card-text class="text--primary">
-          <div>Whitehaven Beach</div>
-
-          <div>
-            PM.regisztrált adószakértő, adótanácsadó Adótanácsadók Egyesületének
-            tagsága mellett kiváló minősítésű védjegyhasználattal.
-          </div>
+    </v-col>
+    <v-row v-for="content in contents" :key="content.title">
+      <v-col cols="12">
+        <h1 class="font-bold text-center">{{content.title}}</h1>
+      </v-col>
+      <v-col v-for="place in content.places" :key="place.name"
+      cols="12" md="6">
+      <v-card shaped dark class="mx-auto" max-width="600" height="100%" color="light-blue darken-3 "  elevation="6">
+        <v-card-title>{{place.name}}</v-card-title>
+        <v-card-subtitle class="pb-0">{{place.date}}</v-card-subtitle>
+        <v-card-text  class="white--text">
+          {{place.description}}
         </v-card-text>
       </v-card>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2009.01.01</h5>
-            <p class="card-text"></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2003.01.01-</h5>
-            <p class="card-text">PM.regisztrált mérlegképes könyvelő.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2004.09.13-10.15.</h5>
-            <p class="card-text">
-              GKM-Fejlesztési projektek,kapcsolódó pályázatok PL-0603
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2001-2003</h5>
-            <p class="card-text">Perfekt Zrt.-adótanácsadó</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">1999-2001.</h5>
-            <p class="card-text">Perfekt Zrt.-mérlegképes könyvelő</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">1983-1988.</h5>
-            <p class="card-text">
-              Szlovák Műszaki Egyetem Vegyészmérnöki Kara-MSC vegyészmérnök
-            </p>
-          </div>
-        </div>
-      </div>
+       </v-col>
+      </v-row>      
     </div>
-    <div class="row">
-      <div class="col-12">
-        <h1 class="font-bold text-center">Munkahelyek, Munkakörök</h1>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2017-</h5>
-            <p class="card-text">
-              Saldo Zrt. – gazdasági tanácsadó, számvitel, társasági adó,
-              kisadók területén.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card bg-secondary text-white shadow" style="height: 100%">
-          <div class="card-body">
-            <h5 class="card-title">2016-2017</h5>
-            <p class="card-text">Bírósági Végrehajtói Kar - Főkönyvelő</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card text-white bg-info shadow">
-          <div class="card-body">
-            <h5 class="card-title">2011-2015.12.31.</h5>
-            <p class="card-text">VEGYTERV Zrt.-gazdasági vezető</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 offet-1 col-md-6 mb-3 mb-md-4">
-        <div class="card bg-secondary text-white shadow">
-          <div class="card-body">
-            <h5 class="card-title">2005-</h5>
-            <p class="card-text">PROMARK-VF Kft.-Ügyvezető igazgató</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 <script>
 export default {
