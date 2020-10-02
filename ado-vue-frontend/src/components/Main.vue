@@ -1,20 +1,20 @@
 <template>
   <div class="main">
-    <div class="bookingContainer elevation-6 pt-2" >
+    <div class="bookingContainer elevation-6">
       <v-img
-        class="bigScreen  rounded"
+        class="bigScreen rounded"
         :aspect-ratio="2.857"
         src="../assets/accountant-big.jpg"
         alt="Könyvelö fotó."
       />
       <v-img
-        class="smallScreen  rounded"
+        class="smallScreen rounded"
         :aspect-ratio="1.333"
         src="../assets/accountant-small.jpg"
         alt="Könyvelö fotó."
       />
       <div class="content" style="padding: 0px">
-        <h1 class="font-bold ml-3" style="line-height: 1.3;">
+        <h1 class="font-bold ml-3" style="line-height: 1.3">
           Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési
           teendő.
         </h1>
@@ -30,8 +30,9 @@
       döntéseit, keressen bizalommal. Segítek megoldást találni az adózás
       útvesztőjében.
     </p>
-    <v-col cols="8" offset="2" md="2"  offset-md="5" >
-     <v-img class="rounded-circle"
+    <v-col cols="8" offset="2" md="2" offset-md="5">
+      <v-img
+        class="rounded-circle"
         :aspect-ratio="1"
         src="../assets/studies.jpg"
         alt="Tanulmányok könyv fotó"
@@ -39,20 +40,27 @@
     </v-col>
     <v-row v-for="content in contents" :key="content.title">
       <v-col cols="12">
-        <h1 class="font-bold text-center">{{content.title}}</h1>
+        <h1 class="font-bold text-center">{{ content.title }}</h1>
       </v-col>
-      <v-col v-for="place in content.places" :key="place.name"
-      cols="12" md="6">
-      <v-card shaped dark class="mx-auto" max-width="600" height="100%" color="light-blue darken-3 "  elevation="6">
-        <v-card-title>{{place.name}}</v-card-title>
-        <v-card-subtitle class="pb-0">{{place.date}}</v-card-subtitle>
-        <v-card-text  class="white--text">
-          {{place.description}}
-        </v-card-text>
-      </v-card>
-       </v-col>
-      </v-row>      
-    </div>
+      <v-col v-for="place in content.places" :key="place.name" cols="12" md="6">
+        <v-card
+          shaped
+          dark
+          class="mx-auto"
+          max-width="600"
+          height="100%"
+          color="light-blue darken-3 "
+          elevation="6"
+        >
+          <v-card-title>{{ place.name }}</v-card-title>
+          <v-card-subtitle class="pb-0">{{ place.date }}</v-card-subtitle>
+          <v-card-text class="white--text">
+            {{ place.description }}
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 <script>
 export default {

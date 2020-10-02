@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="blue-grey darken-4" dark style="height: 70px">
+    <v-app-bar fixed dark app color="blue-grey darken-4" style="height: 70px">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <v-toolbar-title
