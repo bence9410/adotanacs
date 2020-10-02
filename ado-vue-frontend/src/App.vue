@@ -3,7 +3,12 @@
     <Navbar />
 
     <v-main>
-      <v-container mt-2> <Main /> </v-container>
+      <v-container mt-2>
+        <router-link to="/">Föoldal</router-link>
+        <router-link to="/cikkek">Cikkek</router-link>
+        <router-link to="/idopontfoglalas">Időpontfoglalás</router-link>
+        <router-view />
+      </v-container>
     </v-main>
     <Footer />
   </v-app>
@@ -11,7 +16,6 @@
 
 <script>
 import Navbar from "./components/Navbar";
-import Main from "./components/Main";
 import Footer from "./components/Footer";
 
 export default {
@@ -19,7 +23,6 @@ export default {
 
   components: {
     Navbar,
-    Main,
     Footer,
   },
 
