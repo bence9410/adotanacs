@@ -20,21 +20,29 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
       temporary
       color="blue-grey darken-4 "
       dark
+      app
+      style="width:50%;"
     >
-      <v-list dense>
+      <v-btn icon @click.stop="drawer = !drawer">
+        <v-icon>close</v-icon>
+      </v-btn>
+      <v-list dense rounded>
         <v-list-item-group v-model="group" active-class="blue-grey darken-4">
           <v-list-item
-            v-for="navbarItem in navbarItems"
-            :key="navbarItem.title"
+            v-for="link in links"
+            :key="link.searchKey"
+            router
+            :to="link.to"
           >
             <v-list-item-icon>
-              <v-icon>{{ navbarItem.icon }}</v-icon>
+              <v-icon>{{ link.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>{{ navbarItem.title }}</v-list-item-title>
+            <v-list-item-title style="white-space: normal;">
+              {{ link.name }}
+            </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -51,14 +59,10 @@
 </style>
 <script>
 export default {
+  props: ["links"],
   data: () => ({
     drawer: false,
     group: 1,
-    navbarItems: [
-      { icon: "home", title: "Föoldal" },
-      { icon: "event_note", title: "Időpontfoglalás" },
-      { icon: "article", title: "Cikkek" },
-    ],
   }),
 };
 </script>

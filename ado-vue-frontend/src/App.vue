@@ -1,13 +1,10 @@
 <template>
   <v-app>
-    <Navbar />
+    <Navbar :links="links" />
 
     <v-main>
       <v-container mt-2>
-        <router-link to="/">Föoldal</router-link>
-        <router-link to="/cikkek">Cikkek</router-link>
-        <router-link to="/idopontfoglalas">Időpontfoglalás</router-link>
-        <router-view />
+        <router-view></router-view>
       </v-container>
     </v-main>
     <Footer />
@@ -17,6 +14,7 @@
 <script>
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import $ from "jquery";
 
 export default {
   name: "App",
@@ -27,8 +25,30 @@ export default {
   },
 
   data: () => ({
-    //
+    links: [
+      { to: "/", name: "Föoldal", icon: "home" },
+      {
+        to: "/idopontfoglalas",
+        name: "Idöpontfoglalás",
+        icon: "mdi-calendar-clock",
+      },
+      { to: "/cikkek", name: "Cikkek", icon: "article" },
+    ],
   }),
+  created() {
+    var temp = this.links;
+    $.ajax({
+      url: "/api/articles",
+      success: function(data) {
+        temp.push({
+          to: "/cikkek/" + data[0].searchKey,
+          name: data[0].title,
+          icon: "mdi-record",
+        });
+        console.log(data);
+      },
+    });
+  },
 };
 </script>
 <style>
