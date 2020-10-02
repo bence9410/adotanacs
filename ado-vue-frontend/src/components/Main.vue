@@ -3,8 +3,8 @@
     <div class="bookingContainer elevation-6">
       <v-img
         class="bigScreen rounded"
-        :aspect-ratio="2.857"
-        src="../assets/accountant-big.jpg"
+        :aspect-ratio="4.02"
+        src="../assets/accountant-big.png"
         alt="Könyvelö fotó."
       />
       <v-img
@@ -13,7 +13,7 @@
         src="../assets/accountant-small.jpg"
         alt="Könyvelö fotó."
       />
-      <div class="content" style="padding: 0px">
+      <div class="content pt-md-3 pb-md-2" style="padding: 0px">
         <h1 class="font-bold ml-3" style="line-height: 1.3">
           Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési
           teendő.
@@ -143,7 +143,6 @@ export default {
 }
 .bookingContainer {
   position: relative;
-
   margin: 0 auto;
   font-size: 10px;
 }
