@@ -4,7 +4,7 @@
 
     <v-main>
       <v-container mt-2>
-        <router-view></router-view>
+        <router-view :articles="articles"></router-view>
       </v-container>
     </v-main>
     <Footer />
@@ -34,19 +34,23 @@ export default {
       },
       { to: "/cikkek", name: "Cikkek", icon: "article" },
     ],
+    articles: [],
+    freeTimes: [],
   }),
   created() {
-    var temp = this.links;
     $.ajax({
       url: "/api/articles",
-      success: function(data) {
-        temp.push({
+      success: function (data) {
+        for (let i = 0; i < data.length; i++) {
+          this.articles.push(data[i]);
+        }
+
+        this.links.push({
           to: "/cikkek/" + data[0].searchKey,
           name: data[0].title,
           icon: "mdi-record",
         });
-        console.log(data);
-      },
+      }.bind(this),
     });
   },
 };
