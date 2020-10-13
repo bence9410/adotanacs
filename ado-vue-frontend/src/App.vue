@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <Navbar :links="links" />
-
     <v-main>
       <v-container mt-2>
         <router-view :articles="articles"></router-view>
@@ -35,7 +34,6 @@ export default {
       { to: "/cikkek", name: "Cikkek", icon: "article" },
     ],
     articles: [],
-    freeTimes: [],
   }),
   created() {
     $.ajax({
