@@ -16,9 +16,6 @@
       </v-col>
     </v-col>
     <v-col cols="12" class="container col-12 text-center text-md-left">
-      <h5 class="font-footer text-center line-height-lower">
-        Minden megkeresésére válaszolok, érdeklődjön bizalommal.
-      </h5>
       <v-col cols="6" offset="3" md="2" offset-md="5" class="mb-4">
         <v-img
           class="rounded-circle elevation-3"
@@ -26,13 +23,17 @@
           alt="Németh Erzsébet fotó"
         />
       </v-col>
+      <h5 class="font-footer text-center line-height-lower mb-5">
+        Minden megkeresésére válaszolok, érdeklődjön bizalommal.
+      </h5>
       <v-row>
-        <v-col md="4" offset-md="2">
+        <v-col md="4" class="text-center">
           <h4 class="text-uppercase">Elérhetőségek</h4>
           <hr class="dark mb-4 d-inline-block mx-auto" style="width: 128px" />
           <br />
           <p v-for="footerData in footerDatas" :key="footerData.title">
-            <v-icon>{{ footerData.icon }} </v-icon> {{ footerData.title }}
+            <v-icon>{{ footerData.icon }} </v-icon>
+            <span class="force-select">{{ footerData.title }}</span>
           </p>
         </v-col>
 
@@ -46,12 +47,23 @@
             tabindex="0"
           ></iframe>
         </v-col>
+        <v-col md="3" offset-md="1" order-md="first">
+          <router-link
+            v-for="link in links"
+            :key="link.searchKey"
+            :to="link.to"
+            style="text-decoration: none"
+          >
+            <div class="ma-2">{{ link.name }}</div>
+          </router-link>
+        </v-col>
       </v-row>
     </v-col>
   </v-footer>
 </template>
 <script>
 export default {
+  props: ["links"],
   data: () => ({
     footerDatas: [
       { icon: "mdi-skype", title: "erzsike196469" },
@@ -59,7 +71,7 @@ export default {
       { icon: "local_post_office", title: "ennerzsebet@gmail.com" },
       {
         icon: "place",
-        title: "Budapest, Nagy Lajos király útja 56. B, 1148",
+        title: "1148 Budapest, Nagy Lajos király útja 56. B",
       },
     ],
   }),
@@ -67,9 +79,14 @@ export default {
 </script>
 <style>
 .font-footer {
-  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   width: auto;
   font-size: 19px;
+}
+.force-select {
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
 }
 </style>

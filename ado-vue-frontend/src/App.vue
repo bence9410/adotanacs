@@ -6,7 +6,7 @@
         <router-view :articles="articles"></router-view>
       </v-container>
     </v-main>
-    <Footer />
+    <Footer :links="links" />
   </v-app>
 </template>
 
@@ -38,17 +38,16 @@ export default {
   created() {
     $.ajax({
       url: "/api/articles",
-      success: function (data) {
+      success: (data) => {
         for (let i = 0; i < data.length; i++) {
           this.articles.push(data[i]);
+          this.links.push({
+            to: "/cikkek/" + data[i].searchKey,
+            name: data[i].title,
+            icon: "mdi-record",
+          });
         }
-
-        this.links.push({
-          to: "/cikkek/" + data[0].searchKey,
-          name: data[0].title,
-          icon: "mdi-record",
-        });
-      }.bind(this),
+      },
     });
   },
 };

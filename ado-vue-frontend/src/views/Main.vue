@@ -40,7 +40,7 @@
     </v-col>
     <v-row v-for="content in contents" :key="content.title">
       <v-col cols="12">
-        <h1 class="font-bold text-center">{{ content.title }}</h1>
+        <h1 class="font-bold text-center mt-5">{{ content.title }}</h1>
       </v-col>
       <v-col v-for="place in content.places" :key="place.name" cols="12" md="6">
         <v-card
@@ -70,7 +70,7 @@ export default {
         title: "Tanulmányok",
         places: [
           {
-            name: "Adótanácsadók Egyesület",
+            name: "Adótanácsadók Egyesülete",
             date: "2009.01.01",
             description:
               "PM.regisztrált adószakértő, adótanácsadó Adótanácsadók Egyesületének tagsága mellett kiváló minősítésű védjegyhasználattal.",
@@ -131,13 +131,11 @@ export default {
 </script>
 <style>
 .font-bold {
-  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   width: auto;
   font-size: 23px;
 }
 .font {
-  font-family: "Times New Roman", Times, serif;
   width: auto;
   font-size: 18px;
 }
