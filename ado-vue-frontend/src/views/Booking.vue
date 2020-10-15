@@ -1,6 +1,6 @@
 <template>
   <div class="booking">
-    <div class="bookingContainer mt-4 elevation-6">
+    <div class="mainContainer mt-4 elevation-6">
       <v-img
         class="smallScreen rounded img-fluid"
         style="width: 100%"

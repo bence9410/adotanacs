@@ -3,7 +3,9 @@
     <Navbar :links="links" />
     <v-main>
       <v-container mt-2>
-        <router-view :articles="articles"></router-view>
+        <v-col col="12" md="10" offset-md="1">
+          <router-view :articles="articles"></router-view>
+        </v-col>
       </v-container>
     </v-main>
     <Footer :links="links" />
@@ -11,8 +13,8 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import $ from "jquery";
 
 export default {
@@ -25,10 +27,15 @@ export default {
 
   data: () => ({
     links: [
-      { to: "/", name: "Föoldal", icon: "home" },
+      { to: "/", name: "Főoldal", icon: "home" },
+      {
+        to: "/nemeth-erzsebet-adoszakerto",
+        name: "Magamról",
+        icon: "account_box",
+      },
       {
         to: "/idopontfoglalas",
-        name: "Idöpontfoglalás",
+        name: "Időpontfoglalás",
         icon: "mdi-calendar-clock",
       },
       { to: "/cikkek", name: "Cikkek", icon: "article" },
