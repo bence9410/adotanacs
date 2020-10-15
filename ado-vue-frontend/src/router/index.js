@@ -4,6 +4,7 @@ import Main from "@/views/Main.vue";
 import Me from "@/views/Me.vue";
 import Booking from "@/views/Booking.vue";
 import Articles from "@/views/Articles.vue";
+import NotFound from "@/views/NotFound.vue";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 
 
@@ -30,6 +31,11 @@ const routes = [
     name: "Articles",
     component: Articles,
     alias: "/cikkek/:searchKey",
+  },
+  {
+    path: "*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
