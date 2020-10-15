@@ -10,10 +10,9 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import hu.beni.adotanacsadas.controller.ArticleFilter;
+import hu.beni.adotanacsadas.filter.AdoFilter;
 import hu.beni.adotanacsadas.entity.Article;
 import hu.beni.adotanacsadas.repository.ArticleRepository;
-import hu.beni.adotanacsadas.service.PageService;
 
 @SpringBootApplication
 public class AdotanacsadasApplication {
@@ -37,10 +36,10 @@ public class AdotanacsadasApplication {
 	}
 
 	@Bean
-	public FilterRegistrationBean<ArticleFilter> loggingFilter(PageService pageService) {
-		FilterRegistrationBean<ArticleFilter> registrationBean = new FilterRegistrationBean<>();
+	public FilterRegistrationBean<AdoFilter> loggingFilter() {
+		FilterRegistrationBean<AdoFilter> registrationBean = new FilterRegistrationBean<>();
 
-		registrationBean.setFilter(new ArticleFilter(pageService));
+		registrationBean.setFilter(new AdoFilter());
 		registrationBean.addUrlPatterns("/*");
 
 		return registrationBean;

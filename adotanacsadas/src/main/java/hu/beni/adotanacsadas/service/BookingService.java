@@ -47,7 +47,7 @@ public class BookingService {
     private void sendEmail(Booking booking) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("nembence1994@gmail.com");
-        message.setTo("fenicser85@gmail.com", "nembence1994@gmail.com");
+        message.setTo("fenicser85@gmail.com", "nembence1994@gmail.com", "ennerzsebet@gmail.com");
         message.setSubject("Időpontfogalalás Németh Erzsébet adószakértőhöz.");
         message.setText("Szia Édesanyukám! \n\n" + "Foglaltak hozzád egy időpontot a következökkel: \n\n" + "Időpont: "
                 + booking.getMeetingDate() + " " + booking.getMeetingTime().getHu() + " "
