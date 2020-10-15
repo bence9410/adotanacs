@@ -48,14 +48,14 @@
           ></iframe>
         </v-col>
         <v-col md="3" offset-md="1" order-md="first">
-          <router-link
+          <a
             v-for="link in links"
             :key="link.searchKey"
-            :to="link.to"
+            :href="link.to"
             style="text-decoration: none"
           >
             <div class="ma-2">{{ link.name }}</div>
-          </router-link>
+          </a>
         </v-col>
       </v-row>
     </v-col>

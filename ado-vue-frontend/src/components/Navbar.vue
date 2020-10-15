@@ -36,6 +36,7 @@
             :key="link.searchKey"
             router
             :to="link.to"
+            @click="$vuetify.goTo(0)"
           >
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
