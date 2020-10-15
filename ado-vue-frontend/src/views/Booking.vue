@@ -109,7 +109,7 @@
                     v-model="dialog.data.email"
                     :rules="[
                       (v) =>
-                        (!!v && /.+@.+\..+/.test(v)) ||
+                        (!!v && emailRegexp.test(v)) ||
                         'Az e-mail címet a valaki@pelda.com formátumban írja be.',
                     ]"
                     :counter="50"
@@ -179,6 +179,7 @@
 import $ from "jquery";
 export default {
   data: () => ({
+    emailRegex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     response: {
       show: false,
       title: "",
