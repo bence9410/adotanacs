@@ -63,4 +63,7 @@ export default {
 .line-height-lower {
   line-height: 1.1;
 }
+.v-application .v-card__title {
+  word-break: break-word;
+}
 </style>
