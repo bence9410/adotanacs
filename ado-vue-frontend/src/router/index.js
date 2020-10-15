@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "../views/Main.vue";
 import Articles from "../views/Articles.vue";
-import Article from "../views/Article.vue";
 import Booking from "../views/Booking.vue";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 
@@ -18,13 +17,8 @@ const routes = [
     path: "/cikkek",
     name: "Articles",
     component: Articles,
+    alias: "/cikkek/:searchKey",
   },
-  {
-    path: "/cikkek/:searchKey",
-    name: "Article",
-    component: Article,
-  },
-
   {
     path: "/idopontfoglalas",
     name: "Booking",

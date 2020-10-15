@@ -8,8 +8,9 @@
         dense
         label="Keresés"
         no-data-text="Nincs elérhető adat"
-        v-model="value"
-        :items="arts"
+        v-model="selected"
+        @change="search"
+        :items="autocompleteItems"
       >
       </v-autocomplete>
     </v-col>
@@ -17,12 +18,12 @@
       <v-card
         shaped
         dark
-        class="mx-auto"
+        class="mx-auto prevent-copy mb-5"
         max-width="600"
         height="100%"
         color="light-blue darken-3 "
         elevation="6"
-        v-for="article in articles"
+        v-for="article in articleShown"
         :key="article.id"
       >
         <v-card-title>{{ article.title }}</v-card-title>
@@ -36,17 +37,69 @@
 export default {
   props: ["articles"],
   data: () => ({
-    value: [],
+    selected: "",
+    searchKey: "",
   }),
   computed: {
-    arts: function () {
-      var art = [];
+    autocompleteItems() {
+      var items = [];
       for (var i = 0; i < this.articles.length; i++) {
-        art.push(this.articles[i].title);
+        items.push({
+          text: this.articles[i].title,
+          value: this.articles[i].searchKey,
+        });
       }
-      return art;
+      return items;
+    },
+    articleShown() {
+      let result = [];
+      if (this.searchKey == "") {
+        result = this.articles;
+      } else {
+        for (let i = 0; i < this.articles.length; i++) {
+          if (this.articles[i].searchKey == this.searchKey) {
+            result.push(this.articles[i]);
+          }
+        }
+      }
+      return result;
+    },
+  },
+  created() {
+    this.setSearchKeyAndSelected(this.$route.path);
+  },
+  watch: {
+    $route(to) {
+      this.setSearchKeyAndSelected(to.path);
+    },
+  },
+
+  methods: {
+    search() {
+      if (this.selected != null) {
+        this.$router.push("/cikkek/" + this.selected);
+      } else {
+        this.$router.push("/cikkek");
+      }
+    },
+    setSearchKeyAndSelected(path) {
+      this.searchKey = path.substring(8, path.length);
+      if (this.searchKey != "") {
+        for (let i = 0; i < this.autocompleteItems.length; i++) {
+          if (this.autocompleteItems[i].value == this.searchKey) {
+            this.selected = this.autocompleteItems[i].value;
+          }
+        }
+      }
     },
   },
 };
 </script>
-<style></style>
+<style>
+.prevent-copy {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+</style>
