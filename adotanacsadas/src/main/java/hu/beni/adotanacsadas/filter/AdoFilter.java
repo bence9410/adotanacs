@@ -20,7 +20,7 @@ public class AdoFilter implements Filter {
                 
                 try{
                 html=new String(
-                        new ClassPathResource("public/index.html").getInputStream().readAllBytes());
+                        new ClassPathResource("public/index.html").getInputStream().readAllBytes(),"ISO-8859-1");
                 }catch(IOException e){
                         log.error("Error:",e);
                 }

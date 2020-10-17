@@ -32,8 +32,6 @@ public class Article {
 
     private LocalDate date;
 
-    private String articleSearch;
-
     @PrePersist
     public void generateSearchKey() {
         searchKey = title.toLowerCase().replace(" ", "-").replace('.', '-').replace("á", "a").replace("é", "e")

@@ -14,7 +14,7 @@
         class="mt-auto"
         style="height: 60px"
         alt="Kiváló tag logó."
-        src="../assets/perfectMemberLogo.jpg"
+        src="../assets/perfectMemberLogo.png"
       />
     </v-app-bar>
 

@@ -41,18 +41,18 @@ export default {
         places: [
           {
             name: "Adótanácsadók Egyesülete",
-            date: "2009.01.01",
+            date: "2009",
             description:
               "PM.regisztrált adószakértő, adótanácsadó Adótanácsadók Egyesületének tagsága mellett kiváló minősítésű védjegyhasználattal.",
           },
           {
             name: "PM.regisztrált mérlegképes könyvelő",
-            date: "2003.01.01-",
+            date: "2003-",
             description: "",
           },
           {
             name: "GKM-Fejlesztési projektek,kapcsolódó pályázatok PL-0603",
-            date: "2004.09.13-10.15.",
+            date: "2004",
             description: "",
           },
           {
@@ -89,7 +89,7 @@ export default {
           },
           {
             name: "VEGYTERV Zrt.",
-            date: "2011-2015.12.31.",
+            date: "2011-2016",
             description: "Gazdasági vezető",
           },
           { name: "2005-", date: "2005-", description: "Ügyvezető igazgató" },

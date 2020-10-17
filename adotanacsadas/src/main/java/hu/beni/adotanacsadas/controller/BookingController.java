@@ -23,7 +23,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookingController {
 
-    private final BookingRepository bookingRepository;
     private final FreeTimeGenerator freeTimeGenerator;
     private final BookingService bookingService;
 
