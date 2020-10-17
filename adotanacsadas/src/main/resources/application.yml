@@ -1,0 +1,15 @@
+server.port: 5000
+
+spring:
+  mail:
+    host: email-smtp.eu-central-1.amazonaws.com
+    username:  
+    password:  
+    properties.mail:
+      transport.protocol: smtp
+      smtp:
+        port: 25
+        auth: true
+        starttls:
+          enable: true
+          required: true
