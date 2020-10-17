@@ -10,5 +10,5 @@ public enum MeetingType {
 	PERSONAL("személyes"), SKYPE("skype");
 
 	private final String hu;
-	
+
 }

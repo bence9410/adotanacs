@@ -31,7 +31,7 @@ public class BookingService {
 		exceptionIfNotContains(meetingTimes, booking.getMeetingTime());
 
 		bookingRepository.save(booking);
-		sendEmail(booking);	
+		sendEmail(booking);
 	}
 
 	private MeetingTime[] getMeetingTimesOnDateExceptionIfNotFound(LocalDate meetingDate) {

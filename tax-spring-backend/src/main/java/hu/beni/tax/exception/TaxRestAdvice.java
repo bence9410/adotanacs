@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class TaxRestAdvice {
-	
+
 	private static final String ERROR = "Error:";
-	
+
 	private static final String VALIDATION_ERROR_FIELD_MESSAGE = "Validation error: %s %s. ";
-	
+
 	private static final String VALIDATION_ERROR_MESSAGE = "Validation error: %s. ";
-	
+
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Throwable.class)
 	public String handleThrowable(Throwable throwable) {
@@ -48,7 +48,7 @@ public class TaxRestAdvice {
 						bindingResult.getGlobalErrors().stream().map(this::convertToMessage))
 				.reduce(String::concat).orElse("Could not get validation error message");
 	}
-	
+
 	private String convertToMessage(FieldError fieldError) {
 		return validationError(fieldError.getField(), fieldError.getDefaultMessage());
 	}
@@ -56,7 +56,7 @@ public class TaxRestAdvice {
 	private String convertToMessage(ObjectError objectError) {
 		return validationError(objectError.getDefaultMessage());
 	}
-	
+
 	public static String validationError(String field, String message) {
 		return String.format(VALIDATION_ERROR_FIELD_MESSAGE, field, message);
 	}

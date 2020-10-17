@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class BookingController {
 
 	private final FreeTimeService freeTimeGenerator;
-	
+
 	private final BookingService bookingService;
 
 	@PostMapping("/book")
