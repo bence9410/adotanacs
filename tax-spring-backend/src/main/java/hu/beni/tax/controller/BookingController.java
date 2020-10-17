@@ -13,16 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.beni.tax.entity.Booking;
 import hu.beni.tax.enums.MeetingTime;
-import hu.beni.tax.helper.FreeTimeGenerator;
 import hu.beni.tax.service.BookingService;
+import hu.beni.tax.service.FreeTimeService;
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/api")
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class BookingController {
 
-	private final FreeTimeGenerator freeTimeGenerator;
+	private final FreeTimeService freeTimeGenerator;
+	
 	private final BookingService bookingService;
 
 	@PostMapping("/book")
@@ -32,8 +33,6 @@ public class BookingController {
 
 	@GetMapping("/free-times")
 	public Map<LocalDate, MeetingTime[]> findAvailableTimes() {
-		Map<LocalDate, MeetingTime[]> mapNext3Friday = freeTimeGenerator.getFindAvailableTimes();
-
-		return mapNext3Friday;
+		return freeTimeGenerator.findAvailableTimes();
 	}
 }

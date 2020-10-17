@@ -1,22 +1,21 @@
-package hu.beni.tax.helper;
+package hu.beni.tax.service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
-import hu.beni.tax.entity.Booking;
 import hu.beni.tax.enums.MeetingTime;
+import hu.beni.tax.helper.AvailableTimeCalculator;
 import hu.beni.tax.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Component
-public class FreeTimeGenerator {
+@RequiredArgsConstructor
+public class FreeTimeService {
 
 	private final BookingRepository bookingRepository;
 
@@ -35,7 +34,7 @@ public class FreeTimeGenerator {
 		return localDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
 	}
 
-	public Map<LocalDate, MeetingTime[]> next3Friday() {
+	public Map<LocalDate, MeetingTime[]> next3FridayWithTimes() {
 		LocalDate localDate = calcNextFarFriday();
 		Map<LocalDate, MeetingTime[]> map = new TreeMap<>();
 		map.put(localDate, MeetingTime.values());
@@ -45,23 +44,10 @@ public class FreeTimeGenerator {
 
 	}
 
-	public Map<LocalDate, MeetingTime[]> getFindAvailableTimes() {
-		Map<LocalDate, MeetingTime[]> mapNext3Friday = next3Friday();
-
-		for (Booking booking : bookingRepository.findAll()) {
-			MeetingTime[] meetingDate = mapNext3Friday.get(booking.getMeetingDate());
-
-			if (meetingDate != null) {
-
-				if (meetingDate.length == 1) {
-					mapNext3Friday.remove(booking.getMeetingDate());
-				} else {
-					mapNext3Friday.put(booking.getMeetingDate(), Stream.of(meetingDate)
-							.filter(e -> !e.equals(booking.getMeetingTime())).toArray(MeetingTime[]::new));
-				}
-			}
-		}
-		return mapNext3Friday;
+	public Map<LocalDate, MeetingTime[]> findAvailableTimes() {
+		AvailableTimeCalculator availableTimeCalculator = new AvailableTimeCalculator(next3FridayWithTimes());
+		bookingRepository.findAll().stream().forEach(availableTimeCalculator::removeBooking);
+		return availableTimeCalculator.getAvailableTimes();
 	}
 
 }

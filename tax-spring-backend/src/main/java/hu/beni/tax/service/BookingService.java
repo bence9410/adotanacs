@@ -1,7 +1,8 @@
 package hu.beni.tax.service;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Optional;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,39 +11,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import hu.beni.tax.entity.Booking;
 import hu.beni.tax.enums.MeetingTime;
-import hu.beni.tax.helper.FreeTimeGenerator;
+import hu.beni.tax.exception.TaxException;
 import hu.beni.tax.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class BookingService {
 
 	private final BookingRepository bookingRepository;
+
 	private final JavaMailSender mailSender;
-	private final FreeTimeGenerator freeTimeGenerator;
+
+	private final FreeTimeService freeTimeGenerator;
 
 	public void makeBooking(Booking booking) {
-		boolean good = false;
-		Map<LocalDate, MeetingTime[]> map = freeTimeGenerator.getFindAvailableTimes();
+		MeetingTime[] meetingTimes = getMeetingTimesOnDateExceptionIfNotFound(booking.getMeetingDate());
+		exceptionIfNotContains(meetingTimes, booking.getMeetingTime());
 
-		MeetingTime[] times = map.get(booking.getMeetingDate());
-		if (times == null) {
-			throw new RuntimeException("Wrong meeting date.");
-		}
-		for (int i = 0; i < times.length; i++) {
-			if (times[i].equals(booking.getMeetingTime())) {
-				good = true;
-			}
-
-		}
-		if (good == false) {
-			throw new RuntimeException("Wrong meeting time.");
-		}
 		bookingRepository.save(booking);
-		sendEmail(booking);
+		sendEmail(booking);	
+	}
 
+	private MeetingTime[] getMeetingTimesOnDateExceptionIfNotFound(LocalDate meetingDate) {
+		return Optional.ofNullable(freeTimeGenerator.findAvailableTimes().get(meetingDate))
+				.orElseThrow(() -> new TaxException("Wrong meeting date."));
+	}
+
+	private void exceptionIfNotContains(MeetingTime[] meetingTimes, MeetingTime meetingTime) {
+		if (!Arrays.asList(meetingTimes).contains(meetingTime)) {
+			throw new TaxException("Wrong meeting time.");
+		}
 	}
 
 	private void sendEmail(Booking booking) {
