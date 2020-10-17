@@ -1,6 +1,7 @@
 package hu.beni.adotanacsadas.entity;
 
 import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -26,36 +27,36 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Booking {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    @NotNull
-    @Future
-    private LocalDate meetingDate;
+	@NotNull
+	@Future
+	private LocalDate meetingDate;
 
-    @NotNull
-    @Size(min = 3, max = 30)
-    private String name;
+	@NotNull
+	@Size(min = 3, max = 30)
+	private String name;
 
-    @NotNull
-    @Email(regexp = ".+@.+\\..+")
-    private String email;
+	@NotNull
+	@Email(regexp = ".+@.+\\..+")
+	private String email;
 
-    @NotNull
-    @Size(min = 3, max = 60)
-    private String description;
+	@NotNull
+	@Size(min = 3, max = 60)
+	private String description;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private MeetingTime meetingTime;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private MeetingTime meetingTime;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private MeetingLenght meetingLenght;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private MeetingLenght meetingLenght;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private MeetingType meetingType;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private MeetingType meetingType;
 
 }

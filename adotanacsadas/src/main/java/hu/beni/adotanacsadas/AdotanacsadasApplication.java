@@ -1,7 +1,6 @@
 package hu.beni.adotanacsadas;
 
 import java.time.LocalDate;
-import java.util.Properties;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,8 +9,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import hu.beni.adotanacsadas.filter.AdoFilter;
 import hu.beni.adotanacsadas.entity.Article;
+import hu.beni.adotanacsadas.filter.AdoFilter;
 import hu.beni.adotanacsadas.repository.ArticleRepository;
 
 @SpringBootApplication

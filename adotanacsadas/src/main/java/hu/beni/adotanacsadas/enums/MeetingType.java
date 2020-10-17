@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum MeetingType {
 
-    PERSONAL("személyes"), SKYPE("skype");
+	PERSONAL("személyes"), SKYPE("skype");
 
-    private final String hu;
+	private final String hu;
 }

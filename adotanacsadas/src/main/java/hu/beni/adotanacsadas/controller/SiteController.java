@@ -17,27 +17,27 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class SiteController {
 
-    private final ArticleRepository articleRepository;
+	private final ArticleRepository articleRepository;
 
-    @GetMapping("/api/sitemap")
-    public String getSitemap() {
+	@GetMapping("/api/sitemap")
+	public String getSitemap() {
 
-        String sitemap = "";
+		String sitemap = "";
 
-        try {
-            sitemap = new String(new ClassPathResource("sitemap.xml").getInputStream().readAllBytes());
-        } catch (IOException e) {
-            log.error("Error:", e);
-        }
+		try {
+			sitemap = new String(new ClassPathResource("sitemap.xml").getInputStream().readAllBytes());
+		} catch (IOException e) {
+			log.error("Error:", e);
+		}
 
-        List<Article> articles = articleRepository.findAll();
-        String lastModify = articles.get(0).getDate().toString();
-        String articlesSitemap = "<url><loc>http://adotanacs.com/cikkek</loc><lastmod>" + lastModify
-                + "</lastmod></url>";
-        for (Article article : articles) {
-            articlesSitemap += "<url><loc>http://adotanacs.com/cikkek/" + article.getSearchKey() + "</loc><lastmod>"
-                    + article.getDate() + "</lastmod></url>";
-        }
-        return sitemap.replace("articlesComesHere", articlesSitemap);
-    }
+		List<Article> articles = articleRepository.findAll();
+		String lastModify = articles.get(0).getDate().toString();
+		String articlesSitemap = "<url><loc>http://adotanacs.com/cikkek</loc><lastmod>" + lastModify
+				+ "</lastmod></url>";
+		for (Article article : articles) {
+			articlesSitemap += "<url><loc>http://adotanacs.com/cikkek/" + article.getSearchKey() + "</loc><lastmod>"
+					+ article.getDate() + "</lastmod></url>";
+		}
+		return sitemap.replace("articlesComesHere", articlesSitemap);
+	}
 }

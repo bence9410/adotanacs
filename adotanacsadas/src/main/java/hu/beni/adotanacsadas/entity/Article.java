@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.PrePersist;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,23 +20,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Article {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    private String searchKey;
+	private String searchKey;
 
-    private String title;
+	private String title;
 
-    @Lob
-    private String content;
+	@Lob
+	private String content;
 
-    private LocalDate date;
+	private LocalDate date;
 
-    @PrePersist
-    public void generateSearchKey() {
-        searchKey = title.toLowerCase().replace(" ", "-").replace('.', '-').replace("á", "a").replace("é", "e")
-                .replace("ó", "o").replace("--", "-");
-    }
+	@PrePersist
+	public void generateSearchKey() {
+		searchKey = title.toLowerCase().replace(" ", "-").replace('.', '-').replace("á", "a").replace("é", "e")
+				.replace("ó", "o").replace("--", "-");
+	}
 
 }

@@ -18,50 +18,50 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class FreeTimeGenerator {
 
-    private final BookingRepository bookingRepository;
+	private final BookingRepository bookingRepository;
 
-    public LocalDate calcNextFarFriday() {
-        LocalDate date = LocalDate.now();
-        return isWednesdayOrThursday(date) ? nextFriday(nextFriday(date)) : nextFriday(date);
+	public LocalDate calcNextFarFriday() {
+		LocalDate date = LocalDate.now();
+		return isWednesdayOrThursday(date) ? nextFriday(nextFriday(date)) : nextFriday(date);
 
-    }
+	}
 
-    private boolean isWednesdayOrThursday(LocalDate localDate) {
-        return localDate.getDayOfWeek().equals(DayOfWeek.WEDNESDAY)
-                || localDate.getDayOfWeek().equals(DayOfWeek.THURSDAY);
-    }
+	private boolean isWednesdayOrThursday(LocalDate localDate) {
+		return localDate.getDayOfWeek().equals(DayOfWeek.WEDNESDAY)
+				|| localDate.getDayOfWeek().equals(DayOfWeek.THURSDAY);
+	}
 
-    private LocalDate nextFriday(LocalDate localDate) {
-        return localDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-    }
+	private LocalDate nextFriday(LocalDate localDate) {
+		return localDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+	}
 
-    public Map<LocalDate, MeetingTime[]> next3Friday() {
-        LocalDate localDate = calcNextFarFriday();
-        Map<LocalDate, MeetingTime[]> map = new TreeMap<>();
-        map.put(localDate, MeetingTime.values());
-        map.put(nextFriday(localDate), MeetingTime.values());
-        map.put(nextFriday(nextFriday(localDate)), MeetingTime.values());
-        return map;
+	public Map<LocalDate, MeetingTime[]> next3Friday() {
+		LocalDate localDate = calcNextFarFriday();
+		Map<LocalDate, MeetingTime[]> map = new TreeMap<>();
+		map.put(localDate, MeetingTime.values());
+		map.put(nextFriday(localDate), MeetingTime.values());
+		map.put(nextFriday(nextFriday(localDate)), MeetingTime.values());
+		return map;
 
-    }
+	}
 
-    public Map<LocalDate, MeetingTime[]> getFindAvailableTimes() {
-        Map<LocalDate, MeetingTime[]> mapNext3Friday = next3Friday();
+	public Map<LocalDate, MeetingTime[]> getFindAvailableTimes() {
+		Map<LocalDate, MeetingTime[]> mapNext3Friday = next3Friday();
 
-        for (Booking booking : bookingRepository.findAll()) {
-            MeetingTime[] meetingDate = mapNext3Friday.get(booking.getMeetingDate());
+		for (Booking booking : bookingRepository.findAll()) {
+			MeetingTime[] meetingDate = mapNext3Friday.get(booking.getMeetingDate());
 
-            if (meetingDate != null) {
+			if (meetingDate != null) {
 
-                if (meetingDate.length == 1) {
-                    mapNext3Friday.remove(booking.getMeetingDate());
-                } else {
-                    mapNext3Friday.put(booking.getMeetingDate(), Stream.of(meetingDate)
-                            .filter(e -> !e.equals(booking.getMeetingTime())).toArray(MeetingTime[]::new));
-                }
-            }
-        }
-        return mapNext3Friday;
-    }
+				if (meetingDate.length == 1) {
+					mapNext3Friday.remove(booking.getMeetingDate());
+				} else {
+					mapNext3Friday.put(booking.getMeetingDate(), Stream.of(meetingDate)
+							.filter(e -> !e.equals(booking.getMeetingTime())).toArray(MeetingTime[]::new));
+				}
+			}
+		}
+		return mapNext3Friday;
+	}
 
 }
