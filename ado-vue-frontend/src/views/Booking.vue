@@ -211,6 +211,20 @@ export default {
       time: "",
     },
   }),
+  computed: {
+    dialogShow(){
+      return this.dialog.show;
+    }
+  },
+  watch: {
+    dialogShow(visible) {
+      if (visible) {
+        window.FB.CustomerChat.hide();
+      } else {
+        window.FB.CustomerChat.show(false);
+      }
+    },
+  },
   created() {
     $.ajax({
       url: "/api/free-times",
@@ -231,7 +245,6 @@ export default {
       },
     });
   },
-
   methods: {
     openDialog(date, time) {
       this.dialog.show = true;
