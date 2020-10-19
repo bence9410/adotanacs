@@ -1,5 +1,8 @@
 <template>
   <div class="articles">
+  <div class="text-center">
+  <h1>Cikkek</h1>
+  </div>
     <v-col cols="12" md="4" offset-md="8">
       <v-autocomplete
         auto-select-first

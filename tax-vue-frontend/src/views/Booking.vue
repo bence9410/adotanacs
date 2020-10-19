@@ -80,7 +80,7 @@
         <v-card-title>
           <span class="headline"
             >Kérem töltse ki a foglaláshoz az adatait.<br />{{
-              dialog.title + dialog.time
+              dialog.title 
             }}</span
           >
         </v-card-title>
@@ -207,9 +207,7 @@ export default {
         meetingDate: "",
       },
       title: "",
-      date: "",
-      time: "",
-    },
+      },
   }),
   computed: {
     dialogShow(){
@@ -248,7 +246,7 @@ export default {
   methods: {
     openDialog(date, time) {
       this.dialog.show = true;
-      this.dialog.title = date.dateShown + time.timeShown + " " + time.interval;
+      this.dialog.title = date.dateShown +" Péntek "+ time.timeShown + " " + time.interval;
       this.$refs.form.reset();
       this.selectedDate = date;
       this.selectedTime = time;
