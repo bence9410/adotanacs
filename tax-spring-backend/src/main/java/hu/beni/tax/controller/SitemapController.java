@@ -31,11 +31,11 @@ public class SitemapController {
 	private String generateArticlesUrls() {
 		List<Article> articles = articleRepository.findAll();
 		String lastModify = articles.get(0).getDate().toString();
-		StringBuilder sb = new StringBuilder("<url><loc>http://adotanacs.com/cikkek</loc><lastmod>").append(lastModify)
+		StringBuilder sb = new StringBuilder("<url><loc>https://adotanacs.com/cikkek</loc><lastmod>").append(lastModify)
 				.append("</lastmod></url>");
 		for (Article article : articles) {
-			sb.append("<url><loc>http://adotanacs.com/cikkek/").append(article.getSearchKey()).append("</loc><lastmod>")
-					.append(article.getDate()).append("</lastmod></url>");
+			sb.append("<url><loc>https://adotanacs.com/cikkek/").append(article.getSearchKey())
+					.append("</loc><lastmod>").append(article.getDate()).append("</lastmod></url>");
 		}
 		return sb.toString();
 	}
