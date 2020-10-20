@@ -69,23 +69,7 @@ public class TaxApplicationTests {
 	@Test
 	public void bookingTest() {
 		driverFacade.get("http://localhost:" + port);
-		driverFacade.click(".v-app-bar__nav-icon");
-		driverFacade.click(".v-navigation-drawer__content a:nth-child(3)");
-		driverFacade.text(".content h4", "Foglaljon időpontot most.");
-		LocalDate nextFarFriday = freeTimeGenerator.calcNextFarFriday();
-		String bookingFreeDateTime = (nextFarFriday.getMonth().getValue() < 10
-				? "0" + nextFarFriday.getMonth().getValue()
-				: nextFarFriday.getMonth().getValue()) + "."
-				+ (nextFarFriday.getDayOfMonth() < 10 ? "0" + nextFarFriday.getDayOfMonth()
-						: nextFarFriday.getDayOfMonth())
-				+ ". Péntek";
-		driverFacade.text(".v-card__text", "2020." + bookingFreeDateTime);
-		driverFacade.text(".v-card .v-card .v-card__text ", "14:30-tól");
-		driverFacade.click(".v-input__slot");
-		driverFacade.click(".v-menu__content .v-list-item:nth-child(2)");
-		driverFacade.click(".v-card .v-btn ");
-		driverFacade.text(".v-card .headline", "Kérem töltse ki a foglaláshoz az adatait.\n"
-				+ nextFarFriday.toString().replace('-', '.') + ". Péntek 14:30 60 perc");
+		openDialogForFirstAvailableForOneHour();
 		driverFacade.write(".v-form .v-text-field__slot input", "Varga Virag");
 		driverFacade.write(".v-form .row div:nth-child(2) input", "varga@gmail.com");
 		driverFacade.click(".v-form .row div:nth-child(3) .v-select__slot");
@@ -101,23 +85,7 @@ public class TaxApplicationTests {
 	@Test
 	public void bookingValidate() {
 		driverFacade.get("http://localhost:" + port);
-		driverFacade.click(".v-app-bar__nav-icon");
-		driverFacade.click(".v-navigation-drawer__content a:nth-child(3)");
-		driverFacade.text(".content h4", "Foglaljon időpontot most.");
-		LocalDate nextFarFriday = freeTimeGenerator.calcNextFarFriday();
-		String bookingFreeDateTime = (nextFarFriday.getMonth().getValue() < 10
-				? "0" + nextFarFriday.getMonth().getValue()
-				: nextFarFriday.getMonth().getValue()) + "."
-				+ (nextFarFriday.getDayOfMonth() < 10 ? "0" + nextFarFriday.getDayOfMonth()
-						: nextFarFriday.getDayOfMonth())
-				+ ". Péntek";
-		driverFacade.text(".v-card__text", "2020." + bookingFreeDateTime);
-		driverFacade.text(".v-card .v-card .v-card__text ", "14:30-tól");
-		driverFacade.click(".v-input__slot");
-		driverFacade.click(".v-menu__content .v-list-item:nth-child(2)");
-		driverFacade.click(".v-card .v-btn ");
-		driverFacade.text(".v-card .headline", "Kérem töltse ki a foglaláshoz az adatait.\n"
-				+ nextFarFriday.toString().replace('-', '.') + ". Péntek 14:30 60 perc");
+		openDialogForFirstAvailableForOneHour();
 		driverFacade.click(".v-form .row div:nth-child(4) .v-input:nth-child(2)");
 		driverFacade.click(".v-card__actions .v-btn ");
 		driverFacade.text(".v-form .row div:nth-child(1) .v-messages__message", "Kötelező kitölteni.");
@@ -127,4 +95,17 @@ public class TaxApplicationTests {
 		driverFacade.text(".v-form .row div:nth-child(4) .v-messages__message", "Kötelező kitölteni.");
 	}
 
+	public void openDialogForFirstAvailableForOneHour() {
+		driverFacade.click(".v-app-bar__nav-icon");
+		driverFacade.click(".v-navigation-drawer__content a:nth-child(3)");
+		driverFacade.text(".content h4", "Foglaljon időpontot most.");
+		String nextFarFriday = freeTimeGenerator.calcNextFarFriday().toString().replace('-', '.') + ". Péntek";
+		driverFacade.text(".v-card__text", nextFarFriday);
+		driverFacade.text(".v-card .v-card .v-card__text ", "14:30-tól");
+		driverFacade.click(".v-input__slot");
+		driverFacade.click(".v-menu__content .v-list-item:nth-child(2)");
+		driverFacade.click(".v-card .v-btn ");
+		driverFacade.text(".v-card .headline",
+				"Kérem töltse ki a foglaláshoz az adatait.\n" + nextFarFriday + " 14:30 60 perc");
+	}
 }
