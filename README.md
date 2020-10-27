@@ -3,7 +3,7 @@
 ## [Available at: adotanacs.com](https://adotanacs.com)
 
 After a successful booking, we are sending email to the website owner and to the developers.
-The title of the artecles are in the url for SEO.
+The title of the articles are in the url for SEO.
 
 ### Requirements:
 
