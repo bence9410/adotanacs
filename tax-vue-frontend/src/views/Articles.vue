@@ -1,8 +1,8 @@
 <template>
   <div class="articles">
-  <div class="text-center">
-  <h1>Cikkek</h1>
-  </div>
+    <div class="text-center">
+      <h1>Cikkek</h1>
+    </div>
     <v-col cols="12" md="4" offset-md="8">
       <v-autocomplete
         auto-select-first
@@ -31,7 +31,8 @@
       >
         <v-card-title>{{ article.title }}</v-card-title>
         <v-card-subtitle class="pb-0">{{ article.date }}</v-card-subtitle>
-        <v-card-text class="white--text">{{ article.content }} </v-card-text>
+        <v-card-text class="white--text" v-html="article.content">
+        </v-card-text>
       </v-card>
     </v-col>
   </div>
