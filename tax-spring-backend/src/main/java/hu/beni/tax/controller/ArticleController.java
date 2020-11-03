@@ -19,7 +19,7 @@ public class ArticleController {
 
 	@GetMapping
 	public List<Article> findAll() {
-		return articleRepository.findAll();
+		return articleRepository.findAllByOrderByIdDesc();
 	}
 
 }
