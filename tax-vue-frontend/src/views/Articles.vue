@@ -88,7 +88,9 @@ export default {
     },
     setSearchKeyAndSelected(path) {
       this.searchKey = path.substring(8, path.length);
-      if (this.searchKey != "") {
+      if (this.searchKey == "") {
+        this.selected = "";
+      } else {
         for (let i = 0; i < this.autocompleteItems.length; i++) {
           if (this.autocompleteItems[i].value == this.searchKey) {
             this.selected = this.autocompleteItems[i].value;
