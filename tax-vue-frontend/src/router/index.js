@@ -1,10 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "@/views/Main.vue";
-import Me from "@/views/Me.vue";
-import Booking from "@/views/Booking.vue";
-import Articles from "@/views/Articles.vue";
-import NotFound from "@/views/NotFound.vue";
+
 
 Vue.use(VueRouter);
 
@@ -17,23 +14,23 @@ const routes = [
   {
     path: "/nemeth-erzsebet-adoszakerto",
     name: "Me",
-    component: Me,
+    component: () => import(/* webpackChunkName: "me" */ '@/views/Me.vue')
   },
   {
     path: "/idopontfoglalas",
     name: "Booking",
-    component: Booking,
+    component: () => import(/* webpackChunkName: "booking" */ '@/views/Booking.vue')
   },
   {
     path: "/cikkek",
     name: "Articles",
-    component: Articles,
+    component: () => import(/* webpackChunkName: "articles" */ '@/views/Articles.vue'),
     alias: "/cikkek/:searchKey",
   },
   {
     path: "*",
     name: "NotFound",
-    component: NotFound,
+    component: () => import(/* webpackChunkName: "notFound" */ '@/views/NotFound.vue')
   },
 ];
 
