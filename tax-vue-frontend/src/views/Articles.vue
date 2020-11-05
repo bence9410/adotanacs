@@ -40,10 +40,13 @@
 <script>
 export default {
   props: ["articles"],
-
-  metaInfo: () => {
+  data: () => ({
+    selected: "",
+    searchKey: "",
+  }),
+  metaInfo() {
     let description;
-    if (this.searchKey == "") {
+    if (this.articleShown.length == 0 || this.searchKey == "") {
       description = "Cikkek Németh Erzsébet adószakértőtől.";
     } else {
       description = this.articleShown[0].title;
@@ -61,10 +64,6 @@ export default {
       ],
     };
   },
-  data: () => ({
-    selected: "",
-    searchKey: "",
-  }),
   computed: {
     autocompleteItems() {
       var items = [];
