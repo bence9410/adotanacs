@@ -32,6 +32,24 @@
     </p>
   </div>
 </template>
+<script>
+export default {
+  metaInfo: () => ({
+    meta: [
+      {
+        name: "title",
+        content:
+          "Vezetői számvitel, adótanácsadás, átalakulás, végelszámolás könyvelési teendő",
+      },
+      {
+        name: "description",
+        content:
+          "Többéves adószakértői, adótanácsadói, mérlegképes könyvelői tapasztalattal segítem leendő és jelenlegi ügyfeleimet. Megbízhatóság, szerződött garancia titoktartással vállalkozása biztonsága érdekében.",
+      },
+    ],
+  }),
+};
+</script>
 
 <style>
 .font-bold {

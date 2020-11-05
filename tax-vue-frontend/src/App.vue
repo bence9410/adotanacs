@@ -33,6 +33,7 @@ export default {
         name: "Magamról",
         icon: "account_box",
       },
+
       {
         to: "/idopontfoglalas",
         name: "Időpontfoglalás",

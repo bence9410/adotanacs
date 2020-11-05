@@ -80,7 +80,7 @@
         <v-card-title>
           <span class="headline"
             >Kérem töltse ki a foglaláshoz az adatait.<br />{{
-              dialog.title 
+              dialog.title
             }}</span
           >
         </v-card-title>
@@ -178,6 +178,19 @@
 <script>
 import $ from "jquery";
 export default {
+  metaInfo: () => ({
+    meta: [
+      {
+        name: "title",
+        content: "Időpontfoglalás Németh Erzsébet adószákértőhöz",
+      },
+      {
+        name: "description",
+        content:
+          "Foglaljon időpontot most. A tanácsadói díjról a válasz e-mailben tájékoztatom. Sok esetben az együttgondolkodás is hasznos tud lenni a döntés megszületéséhez.",
+      },
+    ],
+  }),
   data: () => ({
     emailRegexp: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     response: {
@@ -207,12 +220,12 @@ export default {
         meetingDate: "",
       },
       title: "",
-      },
+    },
   }),
   computed: {
-    dialogShow(){
+    dialogShow() {
       return this.dialog.show;
-    }
+    },
   },
   watch: {
     dialogShow(visible) {
@@ -246,7 +259,8 @@ export default {
   methods: {
     openDialog(date, time) {
       this.dialog.show = true;
-      this.dialog.title = date.dateShown +" Péntek "+ time.timeShown + " " + time.interval;
+      this.dialog.title =
+        date.dateShown + " Péntek " + time.timeShown + " " + time.interval;
       this.$refs.form.reset();
       this.selectedDate = date;
       this.selectedTime = time;

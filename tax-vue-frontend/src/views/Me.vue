@@ -34,6 +34,20 @@
 </template>
 <script>
 export default {
+  metaInfo: () => ({
+    meta: [
+      {
+        name: "title",
+        content: "Németh Erzsébet adószakértő és adótanácsadó",
+      },
+      {
+        name: "description",
+        content:
+          "Adótanácsadók Egyesületének kiváló tagja. Pénzügyminisztériumnál regisztrált mérlegképes könyvelő.",
+      },
+    ],
+  }),
+
   data: () => ({
     contents: [
       {

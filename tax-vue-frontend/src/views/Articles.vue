@@ -40,6 +40,27 @@
 <script>
 export default {
   props: ["articles"],
+
+  metaInfo: () => {
+    let description;
+    if (this.searchKey == "") {
+      description = "Cikkek Németh Erzsébet adószakértőtől.";
+    } else {
+      description = this.articleShown[0].title;
+    }
+    return {
+      meta: [
+        {
+          name: "title",
+          content: "Cikkek - Adótanácsadás",
+        },
+        {
+          name: "description",
+          content: description,
+        },
+      ],
+    };
+  },
   data: () => ({
     selected: "",
     searchKey: "",
