@@ -76,8 +76,10 @@ export default {
     $route(to) {
       this.setSearchKeyAndSelected(to.path);
     },
+    autocompleteItems() {
+      this.setSearchKeyAndSelected(this.$route.path);
+    },
   },
-
   methods: {
     search() {
       if (this.selected != null) {
