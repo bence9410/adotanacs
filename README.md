@@ -11,6 +11,12 @@ The title of the articles are in the url for SEO.
 - Maven 3
 - npm 6
 
+#### Postgresql dev run
+
+- Run 'dockerRunPostgres.sh' to start postgres and pgadmin.
+- Access pgadmin at localhost:8079 email:'nembence1994@gmail.com' pass:'admin'.
+- Host:'db', database:'tax', user:'postgres', pass:'admin'.
+
 ### Download dependencies:
 
 - run 'npm install' in tax-vue-frontend to download frontend dependencies

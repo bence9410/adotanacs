@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Trafic {
+public class Request {
 
 	@Id
 	@GeneratedValue
@@ -27,20 +28,16 @@ public class Trafic {
 	@CreationTimestamp
 	private LocalDateTime timestamp;
 
-	private String requestId;
-
 	private String ip;
 
 	private String url;
 
 	private String methodType;
 
+	@Type(type = "org.hibernate.type.TextType")
 	private String headers;
 
+	@Type(type = "org.hibernate.type.TextType")
 	private String body;
-
-	private Boolean request;
-
-	private Integer responseStatus;
 
 }

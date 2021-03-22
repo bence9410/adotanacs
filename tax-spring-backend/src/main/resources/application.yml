@@ -1,7 +1,17 @@
 server.port: 5000
 
 spring:
-  jpa.open-in-view: false
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties.hibernate.format_sql: false
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tax
+    username: postgres
+    password: admin
   mail:
     host: email-smtp.eu-central-1.amazonaws.com
     username:  
