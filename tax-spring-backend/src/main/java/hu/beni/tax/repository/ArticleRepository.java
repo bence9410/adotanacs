@@ -8,6 +8,6 @@ import hu.beni.tax.entity.Article;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    List<Article> findAllByOrderByIdDesc();
+	List<Article> findAllByOrderByIdDesc();
 
 }
