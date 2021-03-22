@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.core.io.ClassPathResource;
 
-import hu.beni.tax.exception.TaxException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -25,7 +24,7 @@ public class TaxFilter implements Filter {
 		try (InputStream is = new ClassPathResource("public/index.html").getInputStream()) {
 			html = new String(is.readAllBytes(), StandardCharsets.ISO_8859_1);
 		} catch (IOException e) {
-			throw new TaxException("Could not read index.html!", e);
+			// dev run
 		}
 		INDEX = html;
 	}
