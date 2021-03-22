@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import hu.beni.tax.entity.Article;
 import hu.beni.tax.filter.TaxFilter;
 import hu.beni.tax.repository.ArticleRepository;
+import hu.beni.tax.repository.TraficRepository;
 
 @SpringBootApplication
 public class TaxApplication {
@@ -47,9 +48,9 @@ public class TaxApplication {
 	}
 
 	@Bean
-	public FilterRegistrationBean<TaxFilter> loggingFilter() {
+	public FilterRegistrationBean<TaxFilter> loggingFilter(TraficRepository traficRepository) {
 		FilterRegistrationBean<TaxFilter> registrationBean = new FilterRegistrationBean<>();
-		registrationBean.setFilter(new TaxFilter());
+		registrationBean.setFilter(new TaxFilter(traficRepository));
 		registrationBean.addUrlPatterns("/*");
 		return registrationBean;
 	}
