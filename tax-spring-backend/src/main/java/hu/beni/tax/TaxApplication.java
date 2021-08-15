@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import hu.beni.tax.entity.Article;
@@ -23,6 +24,7 @@ public class TaxApplication {
 	@Bean
 	public ApplicationRunner applicationRunner(JavaMailSender mailSender, ArticleRepository articleRepository) {
 		return args -> {
+			articleRepository.deleteAll();
 			articleRepository.save(Article.builder()
 					.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
 					.date(LocalDate.of(2020, 9, 1))
@@ -43,6 +45,13 @@ public class TaxApplication {
 					.content(
 							"Az összemérés elvével összhangban el kell számolni az eredményben a szerződés elszámolási egységéhez kapcsolódó, az adott teljesítési fokhoz felmerült költségeket, ráfordításokat. Tárgyévi árbevételnek kell fedezetet nyújtania az adott évet terhelő költségekre. A teljesítési fok, azaz a ténylegesen elvégzett munkáknak az elvégzendő összes munkához viszonyított aránya független attól, hogy az alvállalkozói szerződés szerinti teljesítés és számlázás megtörtént-e a fordulónapra, vagy csak azt követően. Az új előírások szerint az - áfa-t nem tartalmazó árbevételt a szerződés elszámolási egysége teljesítésével arányosan (a teljesítési fok arányában) kell elszámolni az eredményben.<br>2019.évben vagy azt megelőzően kötött és 2020. évben még be nem fejeződött projekteknél az adózót választási lehetőség illeti a fordulónapi elszámolásnál, hogy<br>- a „hagyományos” módon, befejezetlen termelésként mutatja be, vagy<br>- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási egységhez tartozik.")
 					.build());
+
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom("nembence1994@gmail.com");
+			message.setTo("nembence1994@gmail.com");
+			message.setSubject("Check email sending.");
+			message.setText("Check email sending.");
+			mailSender.send(message);
 		};
 	}
 
