@@ -36,9 +36,10 @@ public class Article {
 
 	@PrePersist
 	public void generateSearchKey() {
-		searchKey = title.toLowerCase().replace(" ", "-").replace('.', '-').replace("á", "a").replace("é", "e")
+		searchKey = title.toLowerCase().replace(" ", "-").replaceAll("\\.", "").replace("á", "a").replace("é", "e")
 				.replace("ó", "o").replace("--", "-").replace("í", "i").replace("ő", "o").replace("ú", "u")
-				.replace("ü", "u").replace("ű", "u").replace("ö", "o").replace(",", "");
+				.replace("ü", "u").replace("ű", "u").replace("ö", "o").replace(",", "").replace(":", "")
+				.replace("(", "-").replace(")", "-").replace("?", "").replace("--", "-").replace("--", "-");
 	}
 
 }

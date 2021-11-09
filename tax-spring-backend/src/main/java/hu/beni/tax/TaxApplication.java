@@ -62,8 +62,8 @@ public class TaxApplication {
 									+ "mutatja be, vagy<br>- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási "
 									+ "egységhez tartozik.")
 					.build(),
-			Article.builder().title(
-					"Sztv.: Ingatlan bekerülési értékének meghatározása egyösszegű adásvételi szerződés esetén  ")
+			Article.builder()
+					.title("Sztv.: Ingatlan bekerülési értékének meghatározása egyösszegű adásvételi szerződés esetén")
 					.date(LocalDate.of(2020, 12, 1))
 					.content(
 							"Ingatlanvásárlás számviteli szempontból minden esetben telekből és felépítményből áll, tehát még abban az"
@@ -96,7 +96,7 @@ public class TaxApplication {
 							+ "azt nem tekintené telephelynek. ")
 					.build(),
 			Article.builder()
-					.title("Tao.: Kapcsolt vállalkozással szemben fennálló behajthatatlan követelés kivezetése ")
+					.title("Tao.: Kapcsolt vállalkozással szemben fennálló behajthatatlan követelés kivezetése")
 					.date(LocalDate.of(2021, 3, 1))
 					.content(
 							"Amennyiben a társaságnak kapcsolt vállalkozásával szemben Tao tv. szerinti behajthatatlan követelése keletkezik, "
@@ -106,8 +106,7 @@ public class TaxApplication {
 									+ "adatszolgáltatási kötelezettség megszűnik, a törvény nyilvántartási kötelezettséget ír elő, azaz elegendő, ha a "
 									+ "társaság vezeti nyilvántartását az ügyletet megalapozó, valós gazdasági okokról. ")
 					.build(),
-			Article.builder().title("Tao.: A fejlesztési tartalék korlátjának eltörlése ")
-					.date(LocalDate.of(2021, 4, 1))
+			Article.builder().title("Tao.: A fejlesztési tartalék korlátjának eltörlése").date(LocalDate.of(2021, 4, 1))
 					.content(
 							"2020. évközi jogszabálymódosítások lehetővé teszik, hogy az adózó adózás előtti nyeresége 100%-os összegében, legfeljebb 10"
 									+ " milliárd forint felső határig fejlesztési tartalékot – előrehozott értékcsökkenés- képezzen a korábbi 50%-os korlát "
@@ -192,8 +191,8 @@ public class TaxApplication {
 									+ "Az elhatárolt összeget a kapott támogatás elszámolásakor, illetve a támogatás meghiúsulásakor kell megszüntetni.")
 
 					.build(),
-			Article.builder().title(
-					"SZJA: Gyermeket nevelő szülők adó(előleg)-visszatérítésének kiutalása 2022. február 15-éig ")
+			Article.builder()
+					.title("SZJA: Gyermeket nevelő szülők adó(előleg)-visszatérítésének kiutalása 2022. február 15-éig")
 					.date(LocalDate.of(2021, 11, 1))
 					.content("Szja-visszatérítés a családi kedvezményeseknek jár, azaz, aki:<ul>"
 							+ "<li>gyermek után szülőként családi pótlékra jogosult,</li>"
