@@ -2,6 +2,16 @@
   <div class="articles">
     <div class="text-center">
       <h1>Cikkek</h1>
+      <p>
+        Tájékoztatom, hogy a honlapon szereplő tájékoztató cikkek szellemi
+        alkotásokra vonatkozó jogi védelemben részesülnek, ezek felhasználása,
+        átvétele csak írásos beleegyezéssel lehetséges. Minden jog fenntartva.
+        Cikkek tartalma nem minősül adótanácsadásnak, adószakértésnek, azok nem
+        használhatóak fel vélemény helyettesítéseként egy adott gazdasági
+        esemény megítéléséhez és nem keletkeztetnek ügyfél kapcsolatot az
+        olvasóval. Megbízási szerződésen kívüli felhasználásból származó
+        bármilyen kárért, elmaradt haszonért a felelősséget kizárom.
+      </p>
     </div>
     <v-col cols="12" md="4" offset-md="8">
       <v-autocomplete
