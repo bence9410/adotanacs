@@ -50,17 +50,19 @@ public class TaxApplication {
 					"Szerződés elszámolási egysége és a teljesítési fok meghatározása nem számlázott alvállalkozói teljesítés esetén")
 					.date(LocalDate.of(2020, 11, 1))
 					.content(
-							"Az összemérés elvével összhangban el kell számolni az eredményben a szerződés elszámolási egységéhez "
-									+ "kapcsolódó, az adott teljesítési fokhoz felmerült költségeket, ráfordításokat. Tárgyévi árbevételnek "
-									+ "kell fedezetet nyújtania az adott évet terhelő költségekre. A teljesítési fok, azaz a ténylegesen "
-									+ "elvégzett munkáknak az elvégzendő összes munkához viszonyított aránya független attól, hogy az "
-									+ "alvállalkozói szerződés szerinti teljesítés és számlázás megtörtént-e a fordulónapra, vagy csak azt "
-									+ "követően. Az új előírások szerint az - áfa-t nem tartalmazó árbevételt a szerződés elszámolási egysége "
-									+ "teljesítésével arányosan (a teljesítési fok arányában) kell elszámolni az eredményben.<br>2019.évben "
-									+ "vagy azt megelőzően kötött és 2020. évben még be nem fejeződött projekteknél az adózót választási "
-									+ "lehetőség illeti a fordulónapi elszámolásnál, hogy<br>- a „hagyományos” módon, befejezetlen termelésként "
-									+ "mutatja be, vagy<br>- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási "
-									+ "egységhez tartozik.")
+							"Az összemérés elvével összhangban el kell számolni az eredményben a szerződés elszámolási egységéhez kapcsolódó,"
+									+ " az adott teljesítési fokhoz felmerült költségeket, ráfordításokat. Tárgyévi árbevételnek kell fedezetet"
+									+ " nyújtania az adott évet terhelő költségekre. A teljesítési fok, azaz a ténylegesen elvégzett munkáknak"
+									+ "az elvégzendő összes munkához viszonyított arányát, befolyásolja az alvállalkozó szerződés szerinti teljesítése,"
+									+ " azaz, hogy az elvégzett munkát mikor fogadják el. Ha a munkát az alvállalkozó elvégezte ugyan a fordulónapig,"
+									+ " de a teljesítés igazolás szerint tőle csak a következő évben vették azt át, így számlázni is csak a következő"
+									+ " évben jogosult, teljesítési fok meghatározásánál a fordulónapot követően elismert és számlázott összeget"
+									+ " figyelembe venni nem lehet.<br>Az új előírások szerint az - áfa-t nem tartalmazó árbevételt a szerződés elszámolási"
+									+ " egysége teljesítésével arányosan (a teljesítési fok arányában) kell elszámolni az eredményben. <br>"
+									+ "2019.évben vagy azt megelőzően kötött és 2020. évben még be nem fejeződött projekteknél az adózót választási"
+									+ " lehetőség illeti a fordulónapi elszámolásnál, hogy <br> "
+									+ "- a „hagyományos” módon, befejezetlen termelésként mutatja be, vagy <br>"
+									+ "- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási egységhez tartozik.")
 					.build(),
 			Article.builder()
 					.title("Sztv.: Ingatlan bekerülési értékének meghatározása egyösszegű adásvételi szerződés esetén")
@@ -218,6 +220,55 @@ public class TaxApplication {
 							+ "<li>az összevont adóalapba tartozó jövedelmük után maguk fizetik az szja-t és</li>"
 							+ "<li>aki határidőben nem nyilatkozik.</li></ul>" + "Nem jár visszatérítés a"
 							+ "<ul><li> külön adózó jövedelmek pl.  lakás eladása, osztalék, tőzsdei nyereség utáni adóból.</li><ul> </ul></ul>")
+					.build(),
+			Article.builder()
+					.title("SZJA-Tao-KIVA: Kifizető által biztosított kerékpár használatának adómentessége 2022.01.01-től.")
+					.date(LocalDate.of(2021, 12, 1))
+					.content(
+							"Az Szja tv. új, 1. számú melléklet 8.44. pontja szerint adómentesen adható a kifizető által biztosított -"
+									+ " vásárolt vagy bérelt-, <br> - kizárólag emberi erővel hajtott vagy <br>"
+									+ "- legfeljebb 300W teljesítményű, elektromos motorral felszerelt kerékpár magáncélú használata. <br>"
+									+ "Függetlenül attól, hogy a magánszemély (munkavállaló vagy társas vállalkozás tagja) a kerékpárt saját személyes"
+									+ " céljaira használja vagy sem, adómentes használatnak minősül. Kizárólag a használat, nem pedig a tulajdonba adás adómentes. <br>"
+									+ "<b>Tao tv. </b> 3. számú melléklet B) fejezetének 9. pontja a vállalkozás érdekében felmerült költségnek, ráfordításnak minősíti a"
+									+ " használaton felül az átadást és ez utóbbi jogviszony szerinti adókötelezettségét. <br>"
+									+ "KIVA tv. adóalap növelő tételként a 3. számú melléklet A) fejezetére hivatkozik, így a kerékpár Tao tv. szerint elismert"
+									+ " juttatás, ráfordítás nem növeli a KIVA adóalapját.")
+					.build(),
+			Article.builder()
+					.title("SZJA: Mikor adómentesek a koronavírus-járványhoz kapcsolódó egyes juttatások?")
+					.date(LocalDate.of(2022, 01, 1))
+					.content(
+							"Az Szja tv. 1. számú melléklet 8.39. pontja szerint adómentes a kifizető által, a juttatás időpontjától függetlenül biztosított"
+									+ " védőoltás, járványügyi szűrővizsgálat. <br> Járványügyi szűrővizsgálatnak az Eütv.59. § (1) bekezdése szerint akkor"
+									+ " felel meg a szűrés, ha annak célja <br>"
+									+ "- a fertőző megbetegedések korai felismerése, azok <br>"
+									+ "- forrásainak felkutatása, valamint <br>"
+									+ "- a fertőzés veszélyének elhárítása. <br>"
+									+ "Nem tartozik az adómentesen adható járványügyi szűrővizsgálat fogalmába a Covid-ellenanyag kimutatására, illetve a sejtes"
+									+ " immunitásra vonatkozó vizsgálat, így ezen juttatás a felek között fennálló jogviszony szerint adóköteles. <br>"
+									+ "Adómentes a poszt-Covid-szűrővizsgálat, ha az feltétele a munkába állásnak, azaz közvetlenül kapcsolódik a munkaköri"
+									+ " alkalmassághoz, de ha csak lehetőségként biztosítja a munkáltató, akkor a felek között fennálló jogviszony szerint adóköteles. <br>"
+									+ "Vészhelyzet ideje alatt adómentesen adható a munkáltató által a munkavállalóknak biztosított, az előzőekben már említett,"
+									+ " ellenanyag-vizsgálat és poszt-Covid-szűrővizsgálat a Stab. tv. szerint, mint a vészhelyzet következményeinek elhárítását,"
+									+ " mérséklését eredményező juttatás, ha azt bejelentik a NAV-hoz. ")
+					.build(),
+			Article.builder()
+					.title("HIPA: Kell-e ismételten 22NYHIPA nyilatkozatot tenni február 25-ig a csökkentett összegű iparűzési adóelőleg fizetéséhez?"
+							+ " Kell-e könyvelni a kedvezmény összegét? ")
+					.date(LocalDate.of(2022, 02, 1))
+					.content(
+							"22NYHIPA nyilatkozat lehetőséget ad a vállalkozóknak, hogy az önkormányzati adómértékkel számított iparűzési adóelőlegnek csak"
+									+ " a felét fizessék, amennyiben arra jogosultak. <br>"
+									+ "Nyilatkozatot annak kell benyújtania, aki <br>"
+									+ "- 2021. december 31-ig nem adott 21NYHIPA nyilatkozatot, vagy <br>"
+									+ "- adott ugyan nyilatkozatot, de annak megtételét követően új telephelyet létesített vagy megváltoztatta székhelyét, vagy <br>"
+									+ "- 2021-re tett nyilatkozatát, hogy az adóelőnyt de minimis támogatásnak tekinti, kívánja megváltoztatni átmeneti"
+									+ " támogatásként való igénybevételre vagy fordítva. <br>"
+									+ "Nem kell nyilatkoznia a KATA alanynak, amely az iparűzési adóalap egyszerűsített meghatározását választotta, mert adóelőleg"
+									+ " helyett, I.félévre jutó adót fizet. Az éves 50EFt adót az önkormányzat hivatalból 25EFt-ra csökkenti. <br>"
+									+ "Kötelezettségként a csökkentett adóévre jutó adót kell könyvelni. A kedvezmény adórendszeren belüli támogatásnak minősül,"
+									+ " azt nem könyveljük, de nyilvántartjuk.")
 					.build());
 
 	public static void main(String[] args) {
