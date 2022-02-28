@@ -27,6 +27,30 @@
         Minden megkeresésére válaszolok, érdeklődjön bizalommal.
       </h5>
       <v-row>
+        <v-col md="4" class="text-center" order-md="last">
+          <a
+            v-for="link in links.slice(0, 4)"
+            :key="link.searchKey"
+            :href="link.to"
+            style="text-decoration: none"
+          >
+            <div class="ma-2">{{ link.name }}</div>
+          </a>
+          <v-btn
+            elevation="5"
+            x-large
+            outlined
+            color="yellow"
+            class="mt-2 px-2"
+            to="/idopontfoglalas"
+            @click="scrollToTop()"
+          >
+            <h4 class="text-uppercase">Foglaljon időpontot most!</h4>
+            <v-icon style="font-size: 30px" class="ml-2"
+              >mdi-calendar-clock</v-icon
+            >
+          </v-btn>
+        </v-col>
         <v-col md="4" class="text-center">
           <h4 class="text-uppercase">Elérhetőségek</h4>
           <hr class="dark mb-4 d-inline-block mx-auto" style="width: 128px" />
@@ -37,7 +61,7 @@
           </p>
         </v-col>
 
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="3" order-md="first" offset-md="1">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.9856539600414!2d19.125926414935144!3d47.50967060266319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741db5911839703%3A0x531b5f6ae779ace1!2sBudapest%2C%20Nagy%20Lajos%20kir%C3%A1ly%20%C3%BAtja%2056b%2C%201148!5e0!3m2!1shu!2shu!4v1599340674161!5m2!1shu!2shu"
             width="300"
@@ -46,16 +70,6 @@
             aria-hidden="false"
             tabindex="0"
           ></iframe>
-        </v-col>
-        <v-col md="3" offset-md="1" order-md="first">
-          <a
-            v-for="link in links"
-            :key="link.searchKey"
-            :href="link.to"
-            style="text-decoration: none"
-          >
-            <div class="ma-2">{{ link.name }}</div>
-          </a>
         </v-col>
       </v-row>
     </v-col>
@@ -75,6 +89,11 @@ export default {
       },
     ],
   }),
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
+  },
 };
 </script>
 <style>
