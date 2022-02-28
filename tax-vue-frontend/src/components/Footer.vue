@@ -28,14 +28,6 @@
       </h5>
       <v-row>
         <v-col md="4" class="text-center" order-md="last">
-          <a
-            v-for="link in links.slice(0, 4)"
-            :key="link.searchKey"
-            :href="link.to"
-            style="text-decoration: none"
-          >
-            <div class="ma-2">{{ link.name }}</div>
-          </a>
           <v-btn
             elevation="5"
             x-large
@@ -50,6 +42,14 @@
               >mdi-calendar-clock</v-icon
             >
           </v-btn>
+          <a
+            v-for="link in links.slice(0, 4)"
+            :key="link.searchKey"
+            :href="link.to"
+            style="text-decoration: none"
+          >
+            <div class="ma-2">{{ link.name }}</div>
+          </a>
         </v-col>
         <v-col md="4" class="text-center">
           <h4 class="text-uppercase">Elérhetőségek</h4>
