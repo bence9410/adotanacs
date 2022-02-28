@@ -8,28 +8,35 @@
         alt="Tanulmányok könyv fotó"
       />
     </v-col>
-    <v-row v-for="content in contents" :key="content.title">
-      <v-col cols="12">
-        <h1 class="font-bold text-center mt-5">{{ content.title }}</h1>
-      </v-col>
-      <v-col v-for="place in content.places" :key="place.name" cols="12" md="6">
-        <v-card
-          shaped
-          dark
-          class="mx-auto"
-          max-width="600"
-          height="100%"
-          color="light-blue darken-3 "
-          elevation="6"
+    <sequential-entrance fromRight>
+      <v-row v-for="content in contents" :key="content.title">
+        <v-col cols="12">
+          <h1 class="font-bold text-center mt-5">{{ content.title }}</h1>
+        </v-col>
+        <v-col
+          v-for="place in content.places"
+          :key="place.name"
+          cols="12"
+          md="6"
         >
-          <v-card-title>{{ place.name }}</v-card-title>
-          <v-card-subtitle class="pb-0">{{ place.date }}</v-card-subtitle>
-          <v-card-text class="white--text">
-            {{ place.description }}
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+          <v-card
+            shaped
+            dark
+            class="mx-auto"
+            max-width="600"
+            height="100%"
+            color="light-blue darken-3 "
+            elevation="6"
+          >
+            <v-card-title>{{ place.name }}</v-card-title>
+            <v-card-subtitle class="pb-0">{{ place.date }}</v-card-subtitle>
+            <v-card-text class="white--text">
+              {{ place.description }}
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </sequential-entrance>
   </div>
 </template>
 <script>
@@ -80,8 +87,7 @@ export default {
             description: "",
           },
           {
-            name:
-              " 	Szlovák Műszaki Egyetem Vegyészmérnöki Kara-MSC vegyészmérnök",
+            name: " 	Szlovák Műszaki Egyetem Vegyészmérnöki Kara-MSC vegyészmérnök",
             date: "1983-1988",
             description: "",
           },

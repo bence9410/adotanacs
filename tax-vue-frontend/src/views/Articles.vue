@@ -13,38 +13,40 @@
         bármilyen kárért, elmaradt haszonért a felelősséget kizárom.
       </p>
     </div>
-    <v-col cols="12" md="4" offset-md="8">
-      <v-autocomplete
-        auto-select-first
-        clearable
-        outlined
-        dense
-        label="Keresés"
-        no-data-text="Nincs elérhető adat"
-        v-model="selected"
-        @change="search"
-        :items="autocompleteItems"
-      >
-      </v-autocomplete>
-    </v-col>
-    <v-col>
-      <v-card
-        shaped
-        dark
-        class="mx-auto prevent-copy mb-5"
-        max-width="600"
-        height="100%"
-        color="light-blue darken-3 "
-        elevation="6"
-        v-for="article in articleShown"
-        :key="article.id"
-      >
-        <v-card-title>{{ article.title }}</v-card-title>
-        <v-card-subtitle class="pb-0">{{ article.date }}</v-card-subtitle>
-        <v-card-text class="white--text" v-html="article.content">
-        </v-card-text>
-      </v-card>
-    </v-col>
+    <sequential-entrance fromRight>
+      <v-col cols="12" md="4" offset-md="8">
+        <v-autocomplete
+          auto-select-first
+          clearable
+          outlined
+          dense
+          label="Keresés"
+          no-data-text="Nincs elérhető adat"
+          v-model="selected"
+          @change="search"
+          :items="autocompleteItems"
+        >
+        </v-autocomplete>
+      </v-col>
+      <v-col>
+        <v-card
+          shaped
+          dark
+          class="mx-auto prevent-copy mb-5"
+          max-width="600"
+          height="100%"
+          color="light-blue darken-3 "
+          elevation="6"
+          v-for="article in articleShown"
+          :key="article.id"
+        >
+          <v-card-title>{{ article.title }}</v-card-title>
+          <v-card-subtitle class="pb-0">{{ article.date }}</v-card-subtitle>
+          <v-card-text class="white--text" v-html="article.content">
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </sequential-entrance>
   </div>
 </template>
 <script>

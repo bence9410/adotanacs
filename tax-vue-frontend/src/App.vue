@@ -4,7 +4,9 @@
     <v-main>
       <v-container mt-2>
         <v-col col="12" md="10" offset-md="1">
-          <router-view :articles="articles"></router-view>
+          <sequential-entrance fromTop>
+            <router-view :articles="articles"></router-view>
+          </sequential-entrance>
         </v-col>
       </v-container>
     </v-main>

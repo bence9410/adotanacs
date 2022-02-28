@@ -20,56 +20,59 @@
         <h2>A tanácsadói díjról a válasz e-mailben tájékoztatom.</h2>
       </div>
     </div>
-    <h1 v-if="freeTimesLoaded && freeTimes.length == 0">
-      Sajnos jelenleg nincs szabad időpont, kérem látogasson vissza késöbb.
-    </h1>
-    <v-card
-      v-else
-      elevation="2"
-      outlined
-      class="mt-5"
-      v-for="ft in freeTimes"
-      :key="ft.date"
-    >
-      <v-card-text class="pa-3 card-header text-center"
-        >{{ ft.dateShown }} Péntek</v-card-text
-      >
+    <sequential-entrance fromRight>
+      <h1 v-if="freeTimesLoaded && freeTimes.length == 0">
+        Sajnos jelenleg nincs szabad időpont, kérem látogasson vissza késöbb.
+      </h1>
+
       <v-card
+        v-else
         elevation="2"
         outlined
-        class="ma-2"
-        v-for="time in ft.times"
-        :key="time.time"
+        class="mt-5"
+        v-for="ft in freeTimes"
+        :key="ft.date"
       >
-        <v-row class="mt-3">
-          <v-col cols="6">
-            <v-card-text class="pa-3">{{ time.timeShown }}-tól</v-card-text>
+        <v-card-text class="pa-3 card-header text-center"
+          >{{ ft.dateShown }} Péntek</v-card-text
+        >
+        <v-card
+          elevation="2"
+          outlined
+          class="ma-2"
+          v-for="time in ft.times"
+          :key="time.time"
+        >
+          <v-row class="mt-3">
+            <v-col cols="6">
+              <v-card-text class="pa-3">{{ time.timeShown }}-tól</v-card-text>
+            </v-col>
+            <v-col cols="5 " class="pb-0">
+              <v-select
+                dense
+                solo
+                class="pa-0"
+                label="30 perc"
+                :items="['30 perc', '60 perc']"
+                v-model="time.interval"
+              >
+              </v-select>
+            </v-col>
+          </v-row>
+          <v-col class="pt-0"
+            ><v-btn
+              elevation="2"
+              block
+              dark
+              color="green "
+              class=""
+              @click="openDialog(ft, time)"
+              >Lefoglalom
+            </v-btn>
           </v-col>
-          <v-col cols="5 " class="pb-0">
-            <v-select
-              dense
-              solo
-              class="pa-0"
-              label="30 perc"
-              :items="['30 perc', '60 perc']"
-              v-model="time.interval"
-            >
-            </v-select>
-          </v-col>
-        </v-row>
-        <v-col class="pt-0"
-          ><v-btn
-            elevation="2"
-            block
-            dark
-            color="green "
-            class=""
-            @click="openDialog(ft, time)"
-            >Lefoglalom
-          </v-btn>
-        </v-col>
+        </v-card>
       </v-card>
-    </v-card>
+    </sequential-entrance>
     <v-dialog v-model="dialog.show" persistent max-width="600px" eager>
       <v-card>
         <div class="text-right" style="width: 100%">
@@ -192,7 +195,8 @@ export default {
     ],
   }),
   data: () => ({
-    emailRegexp: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    emailRegexp:
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     response: {
       show: false,
       title: "",
@@ -244,9 +248,8 @@ export default {
           let value = data[key];
           let times = [];
           for (let i = 0; i < value.length; i++) {
-            let timeShown = this.availableTimesShown[
-              this.availableTimes.indexOf(value[i])
-            ];
+            let timeShown =
+              this.availableTimesShown[this.availableTimes.indexOf(value[i])];
             times.push({ timeShown, enumTime: value[i], interval: "30 perc" });
           }
           let dateShown = key.replaceAll("-", ".") + ".";

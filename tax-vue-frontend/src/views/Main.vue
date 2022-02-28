@@ -20,6 +20,7 @@
         </h1>
       </div>
     </div>
+
     <p class="font mt-4">
       Többéves adószakértői, adótanácsadói, mérlegképes könyvelői tapasztalattal
       segítem leendő és jelenlegi ügyfeleimet. Megbízhatóság, szerződött
@@ -30,6 +31,23 @@
       döntéseit, keressen bizalommal. Segítek megoldást találni az adózás
       útvesztőjében.
     </p>
+    <sequential-entrance fromRight>
+      <div class="text-center">
+        <v-btn
+          elevation="5"
+          x-large
+          outlined
+          color="red"
+          class="mt-2 px-2"
+          to="/idopontfoglalas"
+        >
+          <h4 class="text-uppercase">Foglaljon időpontot most!</h4>
+          <v-icon style="font-size: 30px" class="ml-2"
+            >mdi-calendar-clock</v-icon
+          >
+        </v-btn>
+      </div>
+    </sequential-entrance>
   </div>
 </template>
 <script>
