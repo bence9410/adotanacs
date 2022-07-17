@@ -257,7 +257,7 @@ public class TaxApplication {
 									+ "értékcsökkenést számolnak el.  ")
 					.build(),
 			Article.builder().title("Sztv.: Jóváhagyott osztalék elengedésének számviteli elszámolása")
-					.date(LocalDate.of(2022, 7, 1))
+					.date(LocalDate.of(2022, 7, 9))
 					.content(
 							"2020. november 27-től megváltozik a jóváhagyott, de a tulajdonos részére még ki nem fizetett osztalék elengedésének"
 									+ " könyvelése az osztalékot jóváhagyó társaságnál. Törvénymódosítást megelőzően az elengedett kötelezettséget az egyéb"
