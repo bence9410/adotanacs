@@ -68,7 +68,7 @@ public class TaxApplication {
 									+ "adatbázisból (KOMA), de ha kimentési kérelmét az adóhatóság elfogadja a nyilvántartásba is visszahelyezi.")
 					.build(),
 			Article.builder().title(
-					"Számvitel: Elévülés miatt leírható-e, mint tulajdonossal szemben elévült kötelezettség, az öt éven túli tartozásból"
+					"Sztv.: Elévülés miatt leírható-e, mint tulajdonossal szemben elévült kötelezettség, az öt éven túli tartozásból"
 							+ " fennálló tagi kölcsön?")
 					.date(LocalDate.of(2021, 7, 1))
 					.content(
@@ -98,7 +98,7 @@ public class TaxApplication {
 									+ " és azok jogutódjaira is vonatkozik a 24 hónapos tiltás.")
 					.build(),
 			Article.builder().title(
-					"Tao: Változás a fejlesztési célú támogatások elszámolásánál 2022. január 01-től, de döntés szerint "
+					"Tao.: Változás a fejlesztési célú támogatások elszámolásánál 2022. január 01-től, de döntés szerint "
 							+ "alkalmazható 2021. évre is.")
 					.date(LocalDate.of(2021, 9, 1))
 					.content(
@@ -194,7 +194,7 @@ public class TaxApplication {
 									+ " azt nem könyveljük, de nyilvántartjuk.")
 					.build(),
 			Article.builder()
-					.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
+					.title("Kkv. tv. Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
 					.date(LocalDate.of(2022, 3, 1))
 					.content(
 							"A Kkv. tv. 4. § (5) bekezdése értelmében a vállalkozások között fennálló kapcsolódó vállalkozási "
@@ -228,7 +228,7 @@ public class TaxApplication {
 									+ "Magyar Közlöny 2021. évi 106. számában megjelent módosítás újabb változást hozott, mely	szerint az adózó döntésére"
 									+ " bízza, hogy alkalmazza-e ezt az elszámolási módot sorozatgyártás esetén nagytömegű termékrendeléseknél.")
 					.build(),
-			Article.builder().title("Fejlesztési tartalék, mint az előrehozott értékcsökkenés új korlátja")
+			Article.builder().title("Tao.: Fejlesztési tartalék, mint az előrehozott értékcsökkenés új korlátja")
 					.date(LocalDate.of(2022, 5, 3))
 					.content(
 							"Az előrehozott értékcsökkenés célja, hogy a négy éven belül megkezdett beruházás megvalósítására legyen "
