@@ -10,7 +10,9 @@
         használhatóak fel vélemény helyettesítéseként egy adott gazdasági
         esemény megítéléséhez és nem keletkeztetnek ügyfél kapcsolatot az
         olvasóval. Megbízási szerződésen kívüli felhasználásból származó
-        bármilyen kárért, elmaradt haszonért a felelősséget kizárom.
+        bármilyen kárért, elmaradt haszonért a felelősséget kizárom.<br />
+        Adotanacs.com Facebook oldalamon olvashat a későbbiekben további hasznos
+        bejegyzéseket, hivatkozásokat.
       </p>
     </div>
     <sequential-entrance fromRight>

@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import hu.beni.tax.entity.Article;
@@ -17,76 +18,7 @@ import hu.beni.tax.repository.ArticleRepository;
 @SpringBootApplication
 public class TaxApplication {
 
-	private static final List<Article> ARTICLES = List.of(Article.builder()
-			.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
-			.date(LocalDate.of(2020, 9, 1))
-			.content("A Kkv. tv. 4. § (5) bekezdése értelmében a vállalkozások között fennálló kapcsolódó vállalkozási "
-					+ "jogviszonyt az is megalapozza, ha az egy természetes személy vagy közösen fellépő természetes "
-					+ "személyek egy csoportja révén jön létre, amennyiben a vállalkozások a tevékenységüket vagy annak "
-					+ "egy részét az érintett piacon vagy egymással szomszédos piacokon folytatják. Kapcsolat lehet "
-					+ "többségi tulajdonlás, döntő irányítási vagy ellenőrzési jogkör. A közösen fellépő természetes "
-					+ "személyek csoportja úgy határozható meg, hogy a társaságoknak olyan magánszemély tulajdonosai "
-					+ "vannak, akik üzleti érdekeiket összehangoltan érvényesítik, valamilyen célból közösen cselekednek. "
-					+ "Ennek értelmében egymástól független természetes személyek által tulajdonolt vállalkozások esetén is "
-					+ "fennállhat kapcsolódó vállalkozási viszony. Minden esetben az egyedi tényállás alapján lehet "
-					+ "meghatározni, hogy a körülmények alapján a közös gazdasági érdek kikövetkeztethető-e.")
-			.build(),
-			Article.builder().title("Fejlesztési tartalék, mint az előrehozott értékcsökkenés új korlátja")
-					.date(LocalDate.of(2020, 10, 1))
-					.content(
-							"Az előrehozott értékcsökkenés célja, hogy a négy éven belül megkezdett beruházás megvalósítására legyen "
-									+ "elegendő forrás.<br>Tao tv. 7. § (1) bekezdés f) pontja szerint az adózás előtti eredményt csökkenti az "
-									+ "eredménytartaléknak az adóévben lekötött tartalékba átvezetett és az adóév utolsó napján a beszámolóban "
-									+ "lekötött tartalékként (a továbbiakban: fejlesztési tartalék) kimutatott összege. 2020. évközi törvénymódosítás "
-									+ "megváltoztatta a korábbi 50%-os korlátot, hatályos jogszabály szerint a korlát az adóévi adózás előtti nyereség, "
-									+ "de legfeljebb adóévenként 10 milliárd forint. Tao tv. 7. § (15) bekezdése felsorolja, hogy mely beruházásoknál "
-									+ "nem élhet az adózó az előrehozott értékcsökkenéssel, egyben túlmutat a számviteli törvény szerinti értékcsökkenési "
-									+ "korlátokra. Megvásárolni kívánt telek bekerülési értékére, amennyiben nem tartozik a kivételek közé, fejlesztési "
-									+ "tartalékot feloldani nem szabad, annak értékcsökkenését tiltja a törvény.<br>Ha a fejlesztési tartalék képzésénél, "
-									+ "annak felhasználásával összefüggésben hibák fordulnak elő, annak a következménye lehet adóhiány, adóbírság, "
-									+ "mulasztási bírság. Immateriális javak bekerülési értéke alapján jogkövetkezmények nélkül nem oldható fel a tartalék.")
-					.build(),
-			Article.builder().title(
-					"Szerződés elszámolási egysége és a teljesítési fok meghatározása nem számlázott alvállalkozói teljesítés esetén")
-					.date(LocalDate.of(2020, 11, 1))
-					.content(
-							"Az összemérés elvével összhangban el kell számolni az eredményben a szerződés elszámolási egységéhez kapcsolódó,"
-									+ " az adott teljesítési fokhoz felmerült költségeket, ráfordításokat. Tárgyévi árbevételnek kell fedezetet"
-									+ " nyújtania az adott évet terhelő költségekre. A teljesítési fok, azaz a ténylegesen elvégzett munkáknak"
-									+ "az elvégzendő összes munkához viszonyított arányát, befolyásolja az alvállalkozó szerződés szerinti teljesítése,"
-									+ " azaz, hogy az elvégzett munkát mikor fogadják el. Ha a munkát az alvállalkozó elvégezte ugyan a fordulónapig,"
-									+ " de a teljesítés igazolás szerint tőle csak a következő évben vették azt át, így számlázni is csak a következő"
-									+ " évben jogosult, teljesítési fok meghatározásánál a fordulónapot követően elismert és számlázott összeget"
-									+ " figyelembe venni nem lehet.<br>Az új előírások szerint az - áfa-t nem tartalmazó árbevételt a szerződés elszámolási"
-									+ " egysége teljesítésével arányosan (a teljesítési fok arányában) kell elszámolni az eredményben. <br>"
-									+ "2019.évben vagy azt megelőzően kötött és 2020. évben még be nem fejeződött projekteknél az adózót választási"
-									+ " lehetőség illeti a fordulónapi elszámolásnál, hogy <br> "
-									+ "- a „hagyományos” módon, befejezetlen termelésként mutatja be, vagy <br>"
-									+ "- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási egységhez tartozik.")
-					.build(),
-			Article.builder()
-					.title("Sztv.: Ingatlan bekerülési értékének meghatározása egyösszegű adásvételi szerződés esetén")
-					.date(LocalDate.of(2020, 12, 1))
-					.content(
-							"Ingatlanvásárlás számviteli szempontból minden esetben telekből és felépítményből áll, tehát még abban az"
-									+ " esetben is meg kell bontani az eszköz szerződés szerinti egyösszegű vételárát, ha az ügyvéd azt nem követelte"
-									+ " meg a szerződő felektől. Tekintettel arra, hogy főszabály szerint a számviteli törvény a befektetett eszközök"
-									+ " között nyilvántartott telekre tiltja az értékcsökkenés elszámolását, jogalkotó szándékával ellentételes, ha az"
-									+ " ingatlan egyösszegű – telek és felépítmény – aktiválását követően a teljes szerződés szerinti vételárra "
-									+ "értékcsökkenést számolnak el.  ")
-					.build(),
-			Article.builder().title("Sztv.: Jóváhagyott osztalék elengedésének számviteli elszámolása")
-					.date(LocalDate.of(2021, 1, 1))
-					.content(
-							"2020. november 27-től megváltozik a jóváhagyott, de a tulajdonos részére még ki nem fizetett osztalék elengedésének"
-									+ " könyvelése az osztalékot jóváhagyó társaságnál. Törvénymódosítást megelőzően az elengedett kötelezettséget az egyéb"
-									+ " bevételekkel szemben kellett kivezetni, törvénymódosítás hatálybalépésének napjától az eredménytartalékba vezetésével"
-									+ " kell megszüntetni. Módosítást követően értelmezhetetlenné válik a korábbi adózás előtti eredmény csökkentése az "
-									+ "elengedett összegre tekintettel, hiszen már nem jelenik meg egyéb bevételként, visszakerül eredeti helyére az "
-									+ "eredménytartalékba. <br>"
-									+ "Amennyiben az elengedett kötelezettség eredeti jogosultja kapcsolt vállalkozása, annál, azaz a tulajdonosnál "
-									+ "osztalékkövetelés elengedésére tekintettel kivezetett egyéb ráfordítás adózás előtti eredményt növelő tétel.")
-					.build(),
+	private static final List<Article> ARTICLES = List.of(
 			Article.builder().title("Tao.: Telephely fogalmának bővülése").date(LocalDate.of(2021, 2, 1))
 					.content("Társasági adó telephely fogalma 2021. január 1-jétől két új alponttal egészül ki:<br>"
 							+ "<ul><li> új telephelyet keletkeztet a természetes személyen keresztül történő „szolgáltatásnyújtás”, azaz, ha külföldi "
@@ -107,15 +39,6 @@ public class TaxApplication {
 									+ " okokról az éves adóbevalláshoz csatolt „TAOASZ” nevű nyomtatványon adatot szolgáltat. 2021. január 1-jétől az "
 									+ "adatszolgáltatási kötelezettség megszűnik, a törvény nyilvántartási kötelezettséget ír elő, azaz elegendő, ha a "
 									+ "társaság vezeti nyilvántartását az ügyletet megalapozó, valós gazdasági okokról. ")
-					.build(),
-			Article.builder().title("Tao.: A fejlesztési tartalék korlátjának eltörlése").date(LocalDate.of(2021, 4, 1))
-					.content(
-							"2020. évközi jogszabálymódosítások lehetővé teszik, hogy az adózó adózás előtti nyeresége 100%-os összegében, legfeljebb 10"
-									+ " milliárd forint felső határig fejlesztési tartalékot – előrehozott értékcsökkenés- képezzen a korábbi 50%-os korlát "
-									+ "helyett. Az emelt mérték szerinti tartalékot 2019. adóévre benyújtott 1929-es adóbevallásban is lehetett érvényesíteni, "
-									+ "ez esetben a feltételek fennállása esetén akár önellenőrzés útján is.  <br> "
-									+ "2021. január 1-jei hatállyal a kedvezmény 10 milliárd forintos korlátja is törlésre kerül, így a korlát egyedül az adózás "
-									+ "előtti nyereség lesz.  ")
 					.build(),
 			Article.builder().title("Art.: Késedelmi pótlék számítása").date(LocalDate.of(2021, 5, 1)).content(
 					"Késedelmi pótlék mértéke minden naptári nap után a késedelem, illetve az esedékesség előtti igénybevétel(felszámítás) "
@@ -269,6 +192,81 @@ public class TaxApplication {
 									+ " helyett, I.félévre jutó adót fizet. Az éves 50EFt adót az önkormányzat hivatalból 25EFt-ra csökkenti. <br>"
 									+ "Kötelezettségként a csökkentett adóévre jutó adót kell könyvelni. A kedvezmény adórendszeren belüli támogatásnak minősül,"
 									+ " azt nem könyveljük, de nyilvántartjuk.")
+					.build(),
+			Article.builder()
+					.title("Természetes személy vagy azok csoportja révén fennálló kapcsolat a Kkv.tv. alapján")
+					.date(LocalDate.of(2022, 3, 1))
+					.content(
+							"A Kkv. tv. 4. § (5) bekezdése értelmében a vállalkozások között fennálló kapcsolódó vállalkozási "
+									+ "jogviszonyt az is megalapozza, ha az egy természetes személy vagy közösen fellépő természetes "
+									+ "személyek egy csoportja révén jön létre, amennyiben a vállalkozások a tevékenységüket vagy annak "
+									+ "egy részét az érintett piacon vagy egymással szomszédos piacokon folytatják. Kapcsolat lehet "
+									+ "többségi tulajdonlás, döntő irányítási vagy ellenőrzési jogkör. A közösen fellépő természetes "
+									+ "személyek csoportja úgy határozható meg, hogy a társaságoknak olyan magánszemély tulajdonosai "
+									+ "vannak, akik üzleti érdekeiket összehangoltan érvényesítik, valamilyen célból közösen cselekednek. "
+									+ "Ennek értelmében egymástól független természetes személyek által tulajdonolt vállalkozások esetén is "
+									+ "fennállhat kapcsolódó vállalkozási viszony. Minden esetben az egyedi tényállás alapján lehet "
+									+ "meghatározni, hogy a körülmények alapján a közös gazdasági érdek kikövetkeztethető-e.")
+					.build(),
+			Article.builder().title(
+					"Sztv.: Szerződés elszámolási egysége és a teljesítési fok meghatározása nem számlázott alvállalkozói teljesítés esetén")
+					.date(LocalDate.of(2022, 4, 1))
+					.content(
+							"Az összemérés elvével összhangban el kell számolni az eredményben a szerződés elszámolási egységéhez kapcsolódó,"
+									+ " az adott teljesítési fokhoz felmerült költségeket, ráfordításokat. Tárgyévi árbevételnek kell fedezetet"
+									+ " nyújtania az adott évet terhelő költségekre. A teljesítési fok, azaz a ténylegesen elvégzett munkáknak"
+									+ "az elvégzendő összes munkához viszonyított arányát, befolyásolja az alvállalkozó szerződés szerinti teljesítése,"
+									+ " azaz, hogy az elvégzett munkát mikor fogadják el. Ha a munkát az alvállalkozó elvégezte ugyan a fordulónapig,"
+									+ " de a teljesítés igazolás szerint tőle csak a következő évben vették azt át, így számlázni is csak a következő"
+									+ " évben jogosult, teljesítési fok meghatározásánál a fordulónapot követően elismert és számlázott összeget"
+									+ " figyelembe venni nem lehet.<br>Az új előírások szerint az - áfa-t nem tartalmazó árbevételt a szerződés elszámolási"
+									+ " egysége teljesítésével arányosan (a teljesítési fok arányában) kell elszámolni az eredményben. <br>"
+									+ "2019.évben vagy azt megelőzően kötött és 2020. évben még be nem fejeződött projekteknél az adózót választási"
+									+ " lehetőség illeti a fordulónapi elszámolásnál, hogy <br> "
+									+ "- a „hagyományos” módon, befejezetlen termelésként mutatja be, vagy <br>"
+									+ "- a projektszámvitel alkalmazását választja, ha a teljesítmény, szerződés elszámolási egységhez tartozik. <br>"
+									+ "Magyar Közlöny 2021. évi 106. számában megjelent módosítás újabb változást hozott, mely	szerint az adózó döntésére"
+									+ " bízza, hogy alkalmazza-e ezt az elszámolási módot sorozatgyártás esetén nagytömegű termékrendeléseknél.")
+					.build(),
+			Article.builder().title("Fejlesztési tartalék, mint az előrehozott értékcsökkenés új korlátja")
+					.date(LocalDate.of(2022, 5, 3))
+					.content(
+							"Az előrehozott értékcsökkenés célja, hogy a négy éven belül megkezdett beruházás megvalósítására legyen "
+									+ "elegendő forrás.<br>Tao tv. 7. § (1) bekezdés f) pontja szerint az adózás előtti eredményt csökkenti az "
+									+ "eredménytartaléknak az adóévben lekötött tartalékba átvezetett és az adóév utolsó napján a beszámolóban "
+									+ "lekötött tartalékként (a továbbiakban: fejlesztési tartalék) kimutatott összege. 2020. évközi törvénymódosítás "
+									+ "megváltoztatta a korábbi 50%-os korlátot, hatályos jogszabály szerint a korlát az adóévi adózás előtti nyereség, "
+									+ "de legfeljebb adóévenként 10 milliárd forint. Tao tv. 7. § (15) bekezdése felsorolja, hogy mely beruházásoknál "
+									+ "nem élhet az adózó az előrehozott értékcsökkenéssel, egyben túlmutat a számviteli törvény szerinti értékcsökkenési "
+									+ "korlátokra. Megvásárolni kívánt telek bekerülési értékére, amennyiben nem tartozik a kivételek közé, fejlesztési "
+									+ "tartalékot feloldani nem szabad, annak értékcsökkenését tiltja a törvény.<br>Ha a fejlesztési tartalék képzésénél, "
+									+ "annak felhasználásával összefüggésben hibák fordulnak elő, annak a következménye lehet adóhiány, adóbírság, "
+									+ "mulasztási bírság. Immateriális javak bekerülési értéke alapján jogkövetkezmények nélkül nem oldható fel a tartalék."
+									+ "NAV 2022.05.03-án közzétett 2022/2. Adózási kérdésben megerősíti, hogy a fejlesztési tartalék nem használható fel "
+									+ "felújításra, kizárólag beruházásra.")
+					.build(),
+			Article.builder()
+					.title("Sztv.: Ingatlan bekerülési értékének meghatározása egyösszegű adásvételi szerződés esetén")
+					.date(LocalDate.of(2022, 6, 1))
+					.content(
+							"Ingatlanvásárlás számviteli szempontból minden esetben telekből és felépítményből áll, tehát még abban az"
+									+ " esetben is meg kell bontani az eszköz szerződés szerinti egyösszegű vételárát, ha az ügyvéd azt nem követelte"
+									+ " meg a szerződő felektől. Tekintettel arra, hogy főszabály szerint a számviteli törvény a befektetett eszközök"
+									+ " között nyilvántartott telekre tiltja az értékcsökkenés elszámolását, jogalkotó szándékával ellentételes, ha az"
+									+ " ingatlan egyösszegű – telek és felépítmény – aktiválását követően a teljes szerződés szerinti vételárra "
+									+ "értékcsökkenést számolnak el.  ")
+					.build(),
+			Article.builder().title("Sztv.: Jóváhagyott osztalék elengedésének számviteli elszámolása")
+					.date(LocalDate.of(2022, 7, 1))
+					.content(
+							"2020. november 27-től megváltozik a jóváhagyott, de a tulajdonos részére még ki nem fizetett osztalék elengedésének"
+									+ " könyvelése az osztalékot jóváhagyó társaságnál. Törvénymódosítást megelőzően az elengedett kötelezettséget az egyéb"
+									+ " bevételekkel szemben kellett kivezetni, törvénymódosítás hatálybalépésének napjától az eredménytartalékba vezetésével"
+									+ " kell megszüntetni. Módosítást követően értelmezhetetlenné válik a korábbi adózás előtti eredmény csökkentése az "
+									+ "elengedett összegre tekintettel, hiszen már nem jelenik meg egyéb bevételként, visszakerül eredeti helyére az "
+									+ "eredménytartalékba. <br>"
+									+ "Amennyiben az elengedett kötelezettség eredeti jogosultja kapcsolt vállalkozása, annál, azaz a tulajdonosnál "
+									+ "osztalékkövetelés elengedésére tekintettel kivezetett egyéb ráfordítás adózás előtti eredményt növelő tétel.")
 					.build());
 
 	public static void main(String[] args) {
@@ -282,13 +280,13 @@ public class TaxApplication {
 			articleRepository.deleteAll();
 			articleRepository.saveAll(ARTICLES);
 
-			/*
-			 * SimpleMailMessage message = new SimpleMailMessage();
-			 * message.setFrom("nembence1994@gmail.com");
-			 * message.setTo("nembence1994@gmail.com");
-			 * message.setSubject("Check email sending.");
-			 * message.setText("Check email sending."); mailSender.send(message);
-			 */
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom("nembence1994@gmail.com");
+			message.setTo("nembence1994@gmail.com");
+			message.setSubject("Check email sending.");
+			message.setText("Check email sending.");
+			mailSender.send(message);
+
 		};
 	}
 
